@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = ["ABCDEEF","GHJKKM"]
+        var newarr = []
+        function count(arr,n)
+        {
+            var str=arr.join();
+            num=0;
+            for(var i=0;i<str.length;i++)
+            {
+                if(str[i]==n)
+                {
+                    num++;
+                }
+            }
+            return num;
+        }
+        function recur(arr)
+        {
+            var str=arr.join();
+            for(var i=0;i<str.length;i++)
+            {
+                for(var j=i+1;j<str.length;j++)
+                {
+                    if(str[i]==str[j])
+                    {
+                        newarr.push(str[i]);
+                    }
+
+                }
+            }
+            for(var i=0;i<newarr.length;i++)
+            {
+                for(var j=0;j<count(arr,newarr[i]);j++)
+                {
+                    document.write(newarr[i]);
+                }
+                document.write(" num="+count(arr,newarr[i])+"<br>");
+            }
+        }
+        recur(arr);
+    </script>
+
+</body>
+</html>

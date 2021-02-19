@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: rgb(218, 213, 211);
+  }
+
+  div.header {
+    background-color: black;
+    padding: 20px;
+    background-image: url(paimeng.jpg);
+    background-size: 51px;
+    background-position: left;
+    background-repeat: no-repeat;
+  }
+
+  div.header a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding-right: 5px;
+    text-decoration: none;
+    top: 0px;
+  }
+
+  div.header a.active {
+    color: #888888;
+  }
+
+  div.header a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  div.column {
+    padding: 10px;
+  }
+
+  div.column.r {
+    width: 25%;
+    height: 500px;
+    margin: 20px;
+    box-shadow: 5px 5px 5px #888888;
+    background-color: white;
+    position: fixed;
+    right: 10px;
+  }
+
+  div.column.l {
+    width: 70%;
+    float: left;
+  }
+
+  div.column.l.le {
+    width: 100%;
+    margin: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    box-shadow: 5px 5px 5px #888888;
+    background-color: white;
+  }
+
+  div.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    padding: 10px;
+  }
+
+  input[type=text][type=passward] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+  }
+
+  select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    background-color: rgb(83, 83, 240);
+    color: white;
+    padding: 5px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  span {
+    color: rgb(118, 118, 119);
+    display: block;
+  }
+
+  textarea {
+    width: 90%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+  }
+
+  input[type=submit]:hover {
+    background-color: #67a6da;
+  }
+
+  p {
+    text-indent: 2em;
+  }
+
+  div.ri {
+    width: 100%;
+  }
+
+  ul.demo {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+  }
+
+  div.img:hover {
+    border: 1px solid #777;
+  }
+
+  div.img img {
+    width: 100%;
+    height: auto;
+  }
+
+  div.desc {
+    padding: 15px;
+    text-align: center;
+  }
+  table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+table{width: 90%;margin: 10px;}
+th{
+  background-color: black;
+  color: white;
+}
+div.footer {
+  background-color: black;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+</style>
+
+<body>
+  <div class="header">
+    <a class="active" href="#">导航链接四</a>
+    <a href="#">导航链接三</a>
+    <a href="#">导航链接二</a>
+    <a href="#">导航链接一</a>
+  </div>
+  <div class="row">
+    <div class="column l">
+      <div class="column l le">
+        <h1>文章一级标题</h1>
+        <h2>文章二级标题</h2>
+        <span>文章作者 文章发表时间</span>
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。<a
+            href="https://www.bilibili.com/video/BV1ua4y1H714">你愿意和我一起加班么。</a>耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+        <img src="keqing.png" alt="keqing" width="304" height="228">
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。<a
+            href="https://www.bilibili.com/video/BV1ua4y1H714">你愿意和我一起加班么。</a>耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+      </div>
+      <div class="column l le">
+        <h1>文章一级标题</h1>
+        <h2>文章二级标题</h2>
+        <span>文章作者 文章发表时间</span>
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+        <p>
+          耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。<a
+            href="https://www.bilibili.com/video/BV1ua4y1H714">你愿意和我一起加班么。</a>耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。耽误太多时间，事情可就做不完了。劳逸结合是不错，但也别放松过头。无论是冒险还是做生意，机会都稍纵即逝。
+        </p>
+        <img src="keqing.png" alt="keqing" width="304" height="228">
+        <ul class="demo">
+          <li>列表项目一</li>
+          <li>列表项目二</li>
+          <li>列表项目三</li>
+        </ul>
+      </div>
+      <div class="column l le" style="flex-wrap: wrap;">
+        <h1>图片</h1>
+        <div class="img">
+          <img src="keqing.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">低情商</div>
+        </div>
+        <div class="img">
+          <img src="keqing.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">低情商</div>
+        </div>
+        <div class="img">
+          <img src="keqing.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">低情商</div>
+        </div>
+        <div class="img">
+          <img src="keqing.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">低情商</div>
+        </div>
+        <div class="img">
+          <img src="keqing.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">低情商</div>
+        </div>
+        <div class="img">
+          <img src="ganyu.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">高情商</div>
+        </div>
+        <div class="img">
+          <img src="ganyu.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">高情商</div>
+        </div>
+        <div class="img">
+          <img src="ganyu.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">高情商</div>
+        </div>
+        <div class="img">
+          <img src="ganyu.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">高情商</div>
+        </div>
+        <div class="img">
+          <img src="ganyu.png" alt="图片文本描述" width="300" height="200">
+          <div class="desc">高情商</div>
+        </div>
+      </div>
+      <div class="column l le">
+        <h1>文章一级标题</h1>
+        <h2>文章二级标题</h2>
+        <span>文章作者 文章发表时间</span>
+        <ol>
+          <li>排名一</li>
+          <li>排名二</li>
+          <li>排名三</li>
+        </ol>
+        <h3>下面是个表格</h3>
+        <table>
+          <tr>
+            <th>表头</th>
+            <th>表头</th>
+            <th>表头</th>
+          </tr>
+          <tr>
+            <td>表内容单元格</td>
+            <td>表内容单元格</td>
+            <td><a href="#">操作</a></td>
+          </tr>
+          <tr>
+            <td>表内容单元格</td>
+            <td>表内容单元格</td>
+            <td><a href="#">操作</a></td>
+          </tr>
+          <tr>
+            <td>表内容单元格</td>
+            <td>表内容单元格</td>
+            <td><a href="#">操作</a></td>
+          </tr>
+          <tr style="background-color: rgb(126, 121, 121);">
+            <td>总计</td>
+            <td>1000000</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="column r">
+      <h3>原来你也玩原神</h3>
+      <form action="/action_page.php">
+        <div class="ri">
+          <label for="medi">请输入邮箱地址</label>
+          <input type="text" id="medi" name="medi" placeholder="这是一个文本输入框">
+        </div>
+        <span style="padding-left: 120px;">邮箱地址请按要求格式输入</span>
+        <div class="ri">
+          <label style="padding-left: 31px;" for="passwor">请输入密码</label>
+          <input type="password" id="passwor" name="passwor" placeholder="请输入密码">
+        </div>
+        <div class="ri">
+          <label for="passwor">请重复输入密码</label>
+          <input type="password" id="passwor" name="passwor" placeholder="请输入密码">
+        </div>
+        <span style="padding-left: 120px;">密码为6-16位英文数字</span>
+        <div class="ri">
+          <label style="padding-left: 80px;" for="medi">性别</label>
+          <input type="radio" name="sex" value="male">男
+          <input type="radio" name="sex" value="female">女
+        </div>
+        <div class="ri">
+          <label style="padding-left: 80px;" for="country">城市</label>
+          <select id="country" name="country">
+            <option value="mengde">蒙德城</option>
+            <option value="liyue">璃月港</option>
+            <option value="dragonbone">龙脊雪山</option>
+          </select>
+        </div>
+        <div class="ri">
+          <label style="padding-left: 80px;" for="medi">爱好</label>
+          <input type="checkbox" name="ho" value="ex">运动
+          <input type="checkbox" name="ho" value="pai">艺术
+          <input type="checkbox" name="ho" value="sci">科学
+        </div>
+        <div class="ri"><label for="tex">个人描述</label><textarea>这是一个多行输入框，输入您的个人描述</textarea></div>
+        <input type="submit" value="确认提交">
+      </form>
+    </div>
+  </div>
+  <div class="footer">
+    <span>版权所有@</span>
+  </div>
+</body>
+
+</html>

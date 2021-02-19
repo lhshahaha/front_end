@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>扁平化</h3>
+    <p id="flat"></p>
+    <h3>冒泡排序</h3>
+    <p id="sort"></p>
+    <h3>对象排序</h3>
+    <script>
+      var arr = [[1, 2], [3, 4], [6, 7, 9, [11, 12, [12, 13, [14]]]], 10];
+      var arrflatten = [];
+      var arrsort = [];
+      function even(arr) {
+        var newarr = [];
+        for (var i = 0; i < arr.length; i++) {
+          if (Array.isArray(arr[i])) {
+            newarr = newarr.concat(even(arr[i]));
+          } else {
+            newarr.push(arr[i]);
+          }
+        }
+        return newarr;
+      }
+      function bubblesort(arr) {
+        var temp;
+        for (var i = 0; i < arr.length; i++) {
+          for (var j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+          }
+        }
+        return arr;
+      }
+      let arrobject = [
+        { id: 10, name: "kc" },
+        { id: 8, name: "hy" },
+        { id: 15, name: "pipi" },
+        { id: 2, name: "mama" },
+      ];
+      arrflatten = even(arr);
+      document.getElementById("flat").innerHTML =arrflatten ; 
+      arrsort = bubblesort(arrflatten);
+      document.getElementById("sort").innerHTML =arrsort ; 
+      arrobject.sort(function idsort(object1, object2) {
+        return object1.id - object2.id;
+      });
+      for (var i = 0; i < arrobject.length; i++) {
+        document.write("id="+arrobject[i].id+" ");
+        document.write("name="+arrobject[i].name);
+        document.write("<br>");
+      }
+    </script>
+  </body>
+</html>

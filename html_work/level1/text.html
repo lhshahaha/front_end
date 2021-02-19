@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 500px;
+        height: 500px;
+        margin: 0 auto;
+    }
+
+    ul,
+    li {
+        list-style: none;
+    }
+
+    ul {
+        position: relative;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        padding-right: 10px;
+        padding-top: 50px;
+    }
+
+    input.chan[type=radio] {
+        display: none;
+    }
+
+    input+label {
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: 15px;
+        text-align: center;
+        line-height: 10px;
+        color: #333;
+        cursor: pointer;
+    }
+
+    input+label+div {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 60px;
+    }
+
+    input:checked+label {
+        color: rgb(76, 148, 230);
+    }
+
+    input:checked+label+div {
+        display: block;
+    }
+
+    input.ful {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input.par[type=text] {
+        width: 70%;
+
+        padding: 12px 0px;
+        margin: 8px 0;
+
+        border: 1px solid #ccc;
+        border-radius: 0px 4px 4px 0px;
+        box-sizing: border-box;
+    }
+
+    input.enter[type=submit] {
+        width: 45%;
+        background-color: rgb(34, 180, 224);
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        float: left;
+    }
+
+    input[type=button] {
+        width: 45%;
+        background-color: white;
+        color: black;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+    input.tex[type=submit] {
+        width: 30%;
+        right: 1px;
+        top: 61px;
+        position: absolute;
+        padding: 12px 15px;
+        margin: 6px 0;
+        background-color: rgb(34, 180, 224);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    select {
+        width: 30%;
+        float: left;
+        padding: 12px 0px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px 0px 0px 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=text]:focus {
+        outline: none;
+        border: 3px solid rgb(87, 141, 202);
+    }
+
+    input[type=submit]:hover {
+        background-color: #9bd8f0;
+    }
+
+    span {
+        color: rgb(209, 211, 180);
+        font-size: 10px;
+    }
+
+    a {
+        display: inline;
+        padding: 5px;
+    }
+    a.enterway {
+        float: left;
+        display: inline;
+        padding: 5px;
+    }
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a:active {
+        text-decoration: none;
+    }
+
+    .text_line {
+        clear: both;
+        margin-bottom: 2px;
+    }
+</style>
+
+<body>
+    <h1>阶段一</h1>
+    <div class="box">
+        <ul>
+            <li>
+                <input class="chan" type="radio" name="check" id="active1" checked><label for="active1">密码登录</label>
+                <div>
+                    <div>
+                        <form action="demo-form.php">
+                            <input class="ful" type="text" id="account" name="account" placeholder="你的手机号/邮箱">
+                            <input class="ful" type="password" id="passward" name="passward" placeholder="密码">
+                            <div class="text_line">
+                                <input type="checkbox" name="remember" value="记住我">记住我
+                                <span>不是自己的电脑不要勾选此选项</span>
+                                <a href="https://www.runoob.com/">无法验证？</a>
+                                <a href="https://www.runoob.com/">忘记密码？</a>
+
+                            </div>
+                            <div class="text_line">
+                                <input class="enter" type="submit" value="登录">
+                                <input type="button" value="注册">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text_line">
+                        <a class="enterway" href="https://www.runoob.com/">
+                            <img border="0" src="WEIBO.png" alt="微博账号登录" width="20" height="20">微博账号登录</a></p>
+                        <a class="enterway" href="https://www.runoob.com/">
+                            <img border="0" src="QQ.png" alt="QQ账号登录" width="20" height="20">QQ账号登录</a></p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <input class="chan" type="radio" name="check" id="active2"><label for="active2">短信登录</label>
+                <div>
+                    <form action="demo-form.php">
+                        <div>
+                            <select id="country" name="country">
+                                <option value="魔仙堡">魔仙堡</option>
+                                <option value="重庆邮电大学">重庆邮电大学</option>
+                                <option value="布雷西亚">布雷西亚</option>
+                            </select>
+                            <input class="par" type="text" id="phonenumber" name="phonenumber" placeholder="填写常用手机号">
+                            <input class="ful" type="text" id="seccode" name="seccode" placeholder="请输入短信验证码">
+                            <input class="tex" type="submit" value="获取验证码">
+                            <div class="text_line">
+                                <input type="checkbox" name="remember" value="记住我">记住我
+                                <span>不是自己的电脑不要勾选此选项</span>
+                                <a href="https://www.runoob.com/">无法验证？</a>
+                                <a href="https://www.runoob.com/">忘记密码？</a>
+
+                            </div>
+                            <div class="text_line">
+                                <input class="enter" type="submit" value="登录">
+                                <input type="button" value="注册">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text_line">
+                        <a class="enterway" href="https://www.runoob.com/">
+                            <img border="0" src="WEIBO.png" alt="微博账号登录" width="20" height="20">微博账号登录</a></p>
+                        <a class="enterway" href="https://www.runoob.com/">
+                            <img border="0" src="QQ.png" alt="QQ账号登录" width="20" height="20">QQ账号登录</a></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
