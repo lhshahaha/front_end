@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      bottom: 0px;
+      width: 100px;
+      position: relative;
+    }
+    li {
+      background-color: burlywood;
+      border-color: black;
+      border-style: solid;
+      width: 100%;
+      bottom: 0px;
+      text-align: center;
+      position: absolute;
+      bottom: 0px;
+    }
+    div.table {
+      background-color: salmon;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      overflow: visible;
+      height: 600px;
+    }
+    button {
+      width: 10%;
+      margin: 10px;
+    }
+    input {
+      width: 10%;
+      margin: 10px;
+    }
+  </style>
+  <body>
+    <div>
+      <input id="numb" />
+      <button>左侧入</button>
+      <button>右侧入</button>
+      <button>左侧出</button>
+      <button>右侧出</button>
+      <button>重新排序</button>
+      <button>清空</button>
+      <button>随机生成</button>
+    </div>
+    <div class="table"></div>
+    <script>
+      var btn = document.getElementsByTagName("button");
+      var num = document.getElementById("numb");
+      var content = document.getElementsByClassName("table");
+      var count = 0;
+      function sleep(time){
+        return new Promise((resolve)=>setTimeout(resolve,time));
+      }
+      btn[0].onclick = function () {
+        if (!(num.value >= 10 || num.value <= 100)) {
+          alert("请输入10-100的数据。");
+        } else {
+          var list = document.createElement("ul");
+          var add = document.createElement("li");
+          var val = document.createTextNode(num.value);
+          add.appendChild(val);
+          add.value = num.value;
+          add.style.height = num.value*7+ "px";
+          list.appendChild(add);
+          content[0].prepend(list);
+          count++;
+        }
+      };
+      btn[1].onclick = function () {
+        if (!(num.value >=10 || num.value <=100)) {
+          alert("请输入10-100的数据。");
+        } else {
+          var list = document.createElement("ul");
+          var add = document.createElement("li");
+          var val = document.createTextNode(num.value);
+          add.appendChild(val);
+          add.value = num.value;
+          add.style.height = num.value*7 + "px";
+          list.appendChild(add);
+          content[0].appendChild(list);
+          count++;
+        }
+      };
+      btn[2].onclick = function () {
+        var element = document.getElementsByTagName("ul");
+        content[0].removeChild(element[0]);
+        count--;
+      };
+      btn[3].onclick = function () {
+        var element = document.getElementsByTagName("ul");
+        content[0].removeChild(element[count - 1]);
+        count--;
+      };
+      btn[4].onclick = async function () {
+        for (var i = 0; i < count - 1; i++) {
+          for (var j = 0; j < count - i - 1; j++) {
+            var Num = document.getElementsByTagName("li");
+        if (Num[j].value > Num[j + 1].value) {
+              temp = Num[j + 1].value;
+              Num[j + 1].value = Num[j].value;
+              Num[j + 1].innerHTML = Num[j].value;
+              Num[j + 1].style.height = Num[j].value*7+ "px";
+              Num[j].value = temp;
+              Num[j].innerHTML = temp;
+              Num[j].style.height = temp*7 + "px";
+            }
+          await sleep(20);
+          }
+        }
+      };
+      btn[5].onclick = function () {
+        for (var i = 0; i < count; i++) {
+          var element = document.getElementsByTagName("ul");
+          content[0].removeChild(element[0]);
+        }
+        count = 0;
+      };
+      btn[6].onclick = function () {
+        for (var i = 0; i < count; i++) {
+          var element = document.getElementsByTagName("ul");
+          content[0].removeChild(element[0]);
+        }
+        count = Math.floor(Math.random() * 20 + 1);
+        for (var i = 0; i < count; i++) {
+          var list = document.createElement("ul");
+          var add = document.createElement("li");
+          var val = Math.floor(Math.random() * 91 + 10);
+          var nod = document.createTextNode(val);
+          add.appendChild(nod);
+          add.value = val;
+          add.style.height = val*7 + "px";
+          list.appendChild(add);
+          content[0].appendChild(list);
+        }
+      };
+    </script>
+  </body>
+</html>
