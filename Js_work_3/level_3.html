@@ -63,7 +63,7 @@
         return new Promise((resolve)=>setTimeout(resolve,time));
       }
       btn[0].onclick = function () {
-        if (!(num.value >= 10 || num.value <= 100)) {
+        if (!(num.value >= 10 && num.value <= 100)) {
           alert("请输入10-100的数据。");
         } else {
           var list = document.createElement("ul");
@@ -78,7 +78,7 @@
         }
       };
       btn[1].onclick = function () {
-        if (!(num.value >=10 || num.value <=100)) {
+        if (!(num.value >=10 &&num.value <=100)) {
           alert("请输入10-100的数据。");
         } else {
           var list = document.createElement("ul");
