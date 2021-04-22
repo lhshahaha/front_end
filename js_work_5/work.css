@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.item {
+  width: 200px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.item img {
+  width: 100%;
+  height: 200px;
+}
+.tittle {
+  font-size: smaller;
+  word-break: break-all;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.search_item {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+}
+.songtittle {
+    position: absolute;
+    left: 0px;
+  flex: 2;
+  font-size: 5px;
+}
+.singger {
+  font-size: 5px;
+  padding: 1px;
+}
+.album {
+  position: absolute;
+  left: 800px;
+  flex: 2;
+  font-size: 5px;
+}
+.singgercom{
+  position: absolute;
+  left: 400px;
+  flex: 2;
+  display: flex;
+  justify-content: left;
+}

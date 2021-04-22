@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="work.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="search" />
+    <button id="searchbtn">搜索</button>
+    <div id="container" class="container"></div>
+    <script src="level3_true.js"></script>
+    <script>
+      var search = document.getElementById("search");
+      var searchbtn = document.getElementById("searchbtn");
+      const ajax = new Ajax({});
+      window.onload = function () {
+        ajax.get("http://musicapi.leanapp.cn/personalized", {
+          success: () => {
+            console.log("成功！！");
+          },
+          error: () => {
+            console.log("错误！！");
+          },
+        });
+      };
+      searchbtn.onclick = function () {
+        ajax.post("http://musicapi.leanapp.cn/search", {
+          data: { keywords: search.value },
+          success: () => {
+            console.log("成功！！");
+          },
+          error: () => {
+            console.log("错误！！");
+          },
+        });
+      };
+    </script>
+  </body>
+</html>
