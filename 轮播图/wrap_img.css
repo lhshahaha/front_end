@@ -10,6 +10,7 @@
     width: 7000px;
     height: 400px;
     z-index: 1;
+    left:-1000px;
 }
 .container .wrap img {
     float: left;

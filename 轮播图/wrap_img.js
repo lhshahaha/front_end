@@ -1,8 +1,10 @@
 var wrap = document.querySelector(".wrap");
 var next = document.querySelector(".arrow_right");
 var prev = document.querySelector(".arrow_left");
+console.log('rnm',parseInt(wrap.style.left))
 function animation(wrap_direction) {
     var newLeft = parseInt(wrap.style.left);
+    
     clearInterval(wrap.change);
     if(wrap_direction){
   if(newLeft==-5000)
