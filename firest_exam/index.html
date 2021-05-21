@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="./node_modules/echarts/dist/echarts.js"></script>
+  </head>
+
+  <body>
+    <div id="container" >
+      <!-- <div id="content" style="filter: none">
+      <div class="photo">
+        <img
+          class="weatherbackground"
+          src="./weather-background/bingbao.jpg"
+          alt=""
+        />
+      </div>
+      <div class="photo photoinfo">
+        <div class="headtitle">
+          <div class="tiltetxt position">
+            <img src="./wheather/定位.png" alt="" />
+            <div class="txt">北京市 海淀区</div>
+          </div>
+        </div>
+        <div class="tiltetxt weatherinfo">
+          <div class="temperature">20°</div>
+          <div class="txt">多云</div>
+          <div class="slide">
+            <div class="details" style="top: 0vw">
+              <div id="txt1" class="minitxt1">西风 1级</div>
+              <div id="txt2" class="minitxtdis">湿度 55%</div>
+              <div id="txt3" class="minitxtdis">西风 1级</div>
+            </div>
+          </div>
+          <div class="txt">光芒透过云缝，洒向大地~</div>
+        </div>
+      </div>
+      <div class="TodayAndTomo">
+        <div class="days">
+          <div class="dayinfo left">
+            <div class="txt">今天</div>
+            <div class="txt">27/16°</div>
+          </div>
+          <div class="condition left">
+            <div class="txt">多云</div>
+            <div class="conditionimg">
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="days">
+          <div class="dayinfo">
+            <div class="txt">明天</div>
+            <div class="txt">26/17°</div>
+          </div>
+          <div class="condition">
+            <div class="txt">多云</div>
+            <div class="conditionimg">
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeout">
+        <div class="timein">
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+          <div class="day">
+            <div class="txt">15:00</div>
+            <img src="./wheather/晴.png" alt="" />
+            <div class="txt">27°</div>
+          </div>
+        </div>
+      </div>
+      <div class="sevendaysout">
+        <div class="sevendaysin">
+          <div class="sevendaysinfo">
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+            <div class="sevendayinfo">
+              <div class="minitxt">昨天</div>
+              <div class="minitxt">05/13</div>
+              <div class="minitxt">阴</div>
+              <img src="./wheather/晴.png" alt="" />
+            </div>
+          </div>
+          <div id="main" class="sevendayschart"></div>
+          <div class="sevendaysinfo">
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+            <div class="sevendayinfo">
+              <img src="./wheather/晴.png" alt="" />
+              <div class="minitxt">多云</div>
+              <div class="minitxt">南风</div>
+              <div class="minitxt">3级</div>
+            </div>
+          </div>
+        </div>
+      </div>      
+      <div class="lifedata">
+        <div class="lifedatain">
+          <div class="lifedatainfo">
+          <div class="lifedatapart">
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/运动.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">运动</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/洗车.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">洗车</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/穿衣.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">穿衣</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/钓鱼.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">钓鱼</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/紫外线.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">紫外线</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/旅游.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">旅游</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/花粉过敏.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">花粉过敏</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/舒适度.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">舒适度</div>
+            </div>
+          </div>
+          <div class="lifedatapart">
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/感冒.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">感冒</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/空气污染.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">空气污染</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/空调开启.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">空调开启</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/太阳镜.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">太阳镜</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/化妆.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">化妆</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/晾晒.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">晾晒</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/交通.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">交通</div>
+            </div>
+            <div class="lifeitem">
+              <div class="lifeimg">
+                <img src="./wheather/防晒.png" alt="">
+              </div>
+              <div class="minitxt">3和8</div>
+              <div class="minitxt">防晒</div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="showlifepage">
+        <div class="lifepage on"></div>
+        <div class="lifepage"></div>
+      </div>
+  </div>
+      <div class="search">
+        <div class="searchinput">
+          <input
+            type="search"
+            id="search"
+            name="position"
+            placeholder="搜索地区"
+          />
+          <div class="searchtxt">取消</div>
+          <img src="./wheather/搜索.png" alt="" />
+        </div>
+        <div class="history">
+          <div class="historytittle">
+            <div class="historytxt">历史记录</div>
+            <div class="delete" id="delete">
+              <img src="./wheather/删 除 (1).png" alt="" />
+            </div>
+          </div>
+          <div class="historyline">
+            <div class="hisitem">重庆</div>
+            <div class="hisitem">四川</div>
+            <div class="hisitem">云南</div>
+            <div class="hisitem">安徽</div>
+            <div class="hisitem">安徽</div>
+            <div class="hisitem">安徽</div>
+            <div class="hisitem">安徽</div>
+            <div class="hisitem">安徽</div>
+            <div class="hisitem">安徽</div>
+          </div>
+        </div>
+        <div class="hotcity">
+          <div class="hotcitytxt">热门城市</div>
+          <div class="hotcityline">
+            <div class="hotcityitem">重庆</div>
+            <div class="hotcityitem">四川</div>
+            <div class="hotcityitem">云南</div>
+            <div class="hotcityitem">安徽</div>
+            <div class="hotcityitem">安徽</div>
+            <div class="hotcityitem">安徽</div>
+            <div class="hotcityitem">安徽</div>
+            <div class="hotcityitem">安徽</div>
+            <div class="hotcityitem">安徽</div>
+          </div>
+        </div>
+      </div>
+      <div class="aircodition">
+        <div class="minitxt">46</div>
+        <div class="minitxt">优</div>
+      </div>
+
+    <div class="airconditiondetailoff">
+      <div class="airtittle">
+        <div class="airimg">
+          <img src="./weather-background/bg02.png" alt="" />
+        </div>
+        <div class="closeair">
+          <img src="./wheather/关闭.png" alt="" />
+        </div>
+        <div class="aircondetail">
+          <div class="txt">空气质量指数</div>
+          <div class="numtxt">46</div>
+          <div class="txt condi">优</div>
+        </div>
+      </div>
+      <div class="airdetails">
+        <div class="airdetail">
+          <div class="minitxt airtop">9</div>
+          <div class="minitxt">PM2.5</div>
+        </div>
+        <div class="airdetail">
+          <div class="minitxt airtop">9</div>
+          <div class="minitxt">PM2.5</div>
+        </div>
+        <div class="airdetail" style="border-right: none">
+          <div class="minitxt airtop">9</div>
+          <div class="minitxt">PM2.5</div>
+        </div>
+        <div class="airdetail">
+          <div class="minitxt airtop">9</div>
+          <div class="minitxt">PM2.5</div>
+        </div>
+        <div class="airdetail">
+          <div class="minitxt airtop">9</div>
+          <div class="minitxt">PM2.5</div>
+        </div>
+        <div class="airdetail" style="border-right: none">
+          <div class="minitxt airtop">9</div>
+          <div class="minitxt">PM2.5</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="lifedetailon">
+      <div class="lifetittle">穿衣指数</div>
+      <div class="lifetxt">rsajfkddklasfjaddaafafsdksfhioafo</div>
+      <div class="closelife">我知道了</div>
+    </div> -->
+  </div>
+    <script src="index.js"></script>
+  </body>
+</html>

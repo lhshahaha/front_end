@@ -1,0 +1,517 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body
+{background-color: rgb(214, 214, 214);
+    width: 100vw;
+}
+.photo
+{
+    width: 100vw;
+    height: 100vw;
+    overflow: hidden;
+}
+.photoinfo
+{
+    position: absolute;
+    top: 0;
+}
+.weatherbackground
+{
+    width: 100%;
+}
+.tiltetxt
+{
+    text-align: center;    color: rgb(164, 167, 6);
+}
+.weatherinfo
+{
+    margin-top: 5vw;
+}
+.temperature
+{
+    font-size: 15vw;
+    font-weight: bolder;
+    margin-right: auto;
+    margin-left: auto;
+}
+.titlecondition
+{
+    font-size: 8vw;
+    font-weight: lighter;
+}
+.txt
+{
+    font-size: 4vw;
+    font-weight: lighter;
+}
+.minitxt
+{
+    font-size: 3vw;  
+}
+.TodayAndTomo
+{
+    background-color: white;
+    width: 100vw;
+    display: flex;
+}
+.days
+{
+    flex: 5;
+    padding:3vw 0;
+}
+.dayinfo
+{
+    display: flex;
+    padding:0 3vw;
+    padding-bottom: 3vw;
+    justify-content: space-between;
+}
+.left
+{
+    border-right: 0.1vw solid #ccc ;}
+.condition
+{
+    display: flex;
+    padding:0 3vw;
+    justify-content: space-between;
+
+}
+.conditionimg
+{
+    height: 5vw;
+}
+.conditionimg img
+{
+    height: 100%;
+}
+.timeout
+{
+    margin:3vw 0;
+    height: 24vw;
+    overflow: hidden;
+}
+.timein
+{
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    height: 26vw;
+}
+.day
+{
+    flex: 3;
+    margin:2vw 5vw;
+    text-align: center;
+}
+.day img
+{
+    width: 100%;
+}
+.sevendaysout
+{
+    margin:3vw 0;
+    height: 84vw;
+    overflow: hidden;
+}
+.sevendaysin
+{
+    height: 86vw;
+    overflow: auto;
+    background-color: white;
+}
+.sevendayschart
+{
+    margin: 0;
+    padding: 0;
+    width: 140vw; 
+    height: 30vw;
+}
+.sevendaysinfo
+{
+    width: 140vw;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+.sevendayinfo
+{
+    width: 20vw;
+    text-align: center;
+}
+.sevendayinfo img
+{
+    width: 50%;
+}
+.slide {
+    left: 43%;
+    position: relative;
+    height: 5vw;
+    overflow: hidden;
+    
+  }
+.details {position: absolute;
+    height: 15vw;z-index: 1;
+    
+  }   
+  .minitxt1 {
+    height: 5vw;
+    font-size: 3vw;
+    opacity: 1;
+    transition: opacity 2s;
+  }
+  .minitxtdis {
+    height: 5vw;
+    font-size: 3vw;
+    opacity: 0;
+    transition: opacity 2s;
+  }
+.position
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 6vw;
+}
+.position img
+{
+    height: 100%;
+    background-color: transparent;
+}
+  .search
+  {
+      z-index: 1;
+      position: absolute;
+      height: 0vw;
+      width: 100vw;
+      top: 0vw;
+      overflow: hidden;
+      transition: height 1s;
+      background-color: white;
+  }
+  .searchon
+  {
+      z-index: 1;
+      position: absolute;
+      height: 100%;
+      width: 100vw;
+      top: 0vw;
+      overflow: hidden;
+      transition: height 1s;
+      background-color: white;
+  }
+  .searchinput
+  {
+      padding: 3vw;
+      display: flex;
+      height: 6vw;
+      flex-direction: row;
+      width: 100vw;
+      border-bottom:0.1vw solid #ccc;
+
+  }
+  .searchinput input[type=search] {
+    width: 80vw;
+    height: 8vw;
+    box-sizing: border-box;
+    border: 0.1vw solid black;
+    border-radius: 5vw;
+    padding-left: 7vw;
+    font-size: 4vw;
+    background-color: white; 
+    background-repeat: no-repeat;
+    outline: none;
+  }
+  .searchinput img
+  {
+      position: absolute;
+      width: 5vw;
+      top: 4.5vw;
+      left: 5vw;
+  }
+  .searchtxt{
+      font-size: 4vw;
+      padding-top: 1vw;
+      padding-left: 3vw;
+  }
+  .historytittle
+  {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  .delete
+  {
+    height: 6vw;
+    padding:3vw;
+  }
+  .historytittle img
+  {
+    height: 100%;
+
+  }
+  .historytxt
+  {
+    padding:3vw;
+    font-size: 6vw;
+  }
+  .hisitem
+  {text-align: center;
+      margin: 3vw;
+      padding:1vw 3vw;
+      border-radius: 5vw;
+      background-color: #ccc;
+      width: 16vw;
+      font-size: 4vw;
+  }
+  .historyline
+  {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+  .hotcityitem  {text-align: center;
+    margin: 3vw;
+    padding:1vw 3vw;
+    border-radius: 5vw;
+    background-color: #ccc;
+    width: 16vw;
+    font-size: 4vw;
+}
+  .hotcityline  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+  .hotcitytxt {
+    padding:3vw;
+    font-size: 6vw;
+  }
+  .aircodition
+  {
+      text-align: center;
+      position: absolute;
+      top: 20vw;
+      left: 1vw;
+      border-radius: 20%;
+      background-color: greenyellow;
+      width: 8vw;
+      height: 12vw;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-between;
+  }
+  .aircodition .minitxt
+  {
+      width: 100%;
+      padding: 0.5vw;
+  }
+.airconditiondetailoff
+{
+    /* display: none; */
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    top:30vw;
+    left: 27vw;
+    width: 47vw;
+    height: 60vw;
+    border-radius: 10%;
+    background-color: white;
+    transition: opacity 1s;
+    overflow: hidden;
+}
+.airconditiondetailon
+{
+    /* display: block; */
+    opacity: 1;
+    z-index: 1;
+    position: absolute;
+    top:30vw;
+    left: 27vw;
+    width: 47vw;
+    height: 60vw;
+    border-radius: 10%;
+    background-color: white;
+    overflow: hidden;
+    transition: opacity 1s;
+}
+.airtittle
+{
+    position: relative;
+    height:30vw;
+    width: 100%;
+}
+.aircondetail
+{
+    position: absolute;
+    width: 100%;
+    top: 5vw;
+    text-align: center;
+}
+.condi
+{
+    width: 6vw;
+    border-radius: 10%;
+    background-color: greenyellow;
+    margin: 0 auto;
+}
+.closeair
+{
+    position: absolute;
+    top: 2vw;
+    right: 3vw;
+    height: 3vw;
+}
+.closeair img
+{
+    height: 100%;
+}
+.aircondetail .numtxt
+{
+    font-size: 6vw;
+}
+.airimg
+{
+
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.airimg img
+{
+    width: 100%;
+}
+  .airdetails
+  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .airdetail
+  {
+      width: 15vw;
+      height: 15vw;
+      text-align: center;
+      border: 0.1vw solid #ccc;
+  }
+  .airtop
+  {
+      margin-top: 3vw;
+  }
+  .lifedata
+  {
+      margin: 2vw 0;
+      height: 31vw;
+      overflow: hidden;
+  }
+  .lifedatain
+  {
+      position: relative;
+      background-color: white;
+      height: 33vw;
+      width: 100vw;
+  } 
+   .lifedatainfo
+  {width: 200vw;
+    position: absolute;
+            display: flex;
+      flex-direction: row;
+  }
+  .move
+  {
+    transition: left 0.2s ease-in-out;
+  }
+  .showlifepage
+  {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+  .lifepage
+  {
+      height: 1vw;
+      width: 5vw;
+      border-radius: 5%;
+      background-color: #ccc;
+      margin: 1vw 1vw;
+  }
+  .on
+  {
+    transition: background-color 0.2s ease-in-out;
+      background-color: aliceblue;
+  }
+  .lifedatapart
+  {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100vw;
+  }
+  .lifeitem
+  {
+      width: 24vw;
+      border: 0.5vw solid #ccc;
+      text-align: center;
+  }
+
+  .lifeimg
+  {
+      height: 7vw;
+  }
+  .lifeimg img
+  {
+      width: 7vw;
+  }
+  .lifedetailoff
+  {
+    /* display: none; */
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    top:160vw;
+    left: 17vw;
+    width: 60vw;
+    border-radius: 5%;
+    background-color: white;
+    transition: opacity 1s;
+    overflow: hidden;
+    text-align: center;
+  }
+  .lifedetailon
+  {
+    /* display: none; */
+    opacity: 1;
+    z-index: 1;
+    position: absolute;
+    top:160vw;
+    left: 17vw;
+    width: 60vw;
+    border-radius: 5%;
+    text-align: center;
+    background-color: white;
+    transition: opacity 1s;
+    overflow: hidden;
+  }
+  .lifetxt{
+      word-break:break-word;
+
+      padding:5vw 5vw;
+  }
+  .closelife
+  {
+      margin: 2vw 7vw;
+      border:0.1vw solid #ccc;
+      border-radius: 10%;
+      background-color: coral;
+      font-size: 5vw;
+  }
+  .lifetittle
+  {
+      background-color: coral;
+      font-size: 5vw;
+  }

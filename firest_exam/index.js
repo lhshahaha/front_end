@@ -857,7 +857,7 @@ function lifeslides(){
   // 在视图层里边查找容器元素
   const containerEl = swiperEl.querySelector(".lifedatainfo");
   
-  let state = 0; // 鼠标默认状态
+  let state = 0; // 默认状态
   let oldEvent = null; // 用来记录手指上次的位置
   // 获取容器的初始left值
   let left = containerEl.offsetLeft;
