@@ -857,8 +857,8 @@ function lifeslides(){
   // 在视图层里边查找容器元素
   const containerEl = swiperEl.querySelector(".lifedatainfo");
   
-  let state = 0; // 鼠标默认状态
-  let oldEvent = null; // 用来记录鼠标上次的位置
+  let state = 0; // 默认状态
+  let oldEvent = null; // 用来记录手指上次的位置
   // 获取容器的初始left值
   let left = containerEl.offsetLeft;
   let index = 0;
@@ -868,7 +868,7 @@ function lifeslides(){
     state = 1; 
     oldEvent = event; 
     beforeindex=index
-    console.log("鼠标按下了");
+    console.log("手指按下了");
   });
   
   containerEl.addEventListener("touchmove", (event) => {
@@ -886,7 +886,7 @@ function lifeslides(){
     console.log(1, containerEl.style.left);
     containerEl.style.left = left*0.5  + "vw";
     console.log(2, containerEl.style.left);
-    console.log("鼠标移动了");
+    console.log("手指移动了");
   });
   var lifepage=document.getElementsByClassName("lifepage")
   containerEl.addEventListener("touchend", (event) => {
@@ -903,8 +903,7 @@ function lifeslides(){
     });
     left = 0 - 100 * index;
     containerEl.style.left = left + "vw";
-    console.log("鼠标抬起了");
-    console.log("鼠标抬起了");
+    console.log("手指抬起了");
   });
   }
   lifeslides();
