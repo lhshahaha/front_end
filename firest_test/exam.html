@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/mockjs/dist/mock.js"></script>
+  </head>
+  <body>
+    <script>
+    
+      async function mockapi() {
+          var mocksevenday
+        const Random = Mock.Random;
+        Mock.mock(/\.json/, {
+          "temphigh|7": [() => Random.integer(10, 30)],
+          "templow|7": [() => Random.integer(-10, 10)],
+        });
+        const xhr = new XMLHttpRequest();
+        //初始化一个get请求
+        xhr.open("get", "hello.json", false);
+        //接收返回值
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+              const res = JSON.parse(xhr.responseText);
+              console.log(res);
+              mocksevenday=res;
+            } else {
+              console.log("请求失败");
+            }
+          }
+        };
+        xhr.send();
+        return mocksevenday
+      }
+      console.log(123,mockapi())
+      //         const Random = Mock.Random
+      // Mock.mock(/\.json/, {
+      //     'temphigh|7': [
+      //           () => Random.integer(10, 30)
+      //         ],
+      //         'templow|7': [
+      //           () => Random.integer(-10, 10)
+      //         ]
+      // })
+      // const xhr = new XMLHttpRequest()
+      // //初始化一个get请求
+      // xhr.open("get", 'hello.json', true)
+      // //接收返回值
+      // xhr.onreadystatechange = () => {
+      //   if (xhr.readyState === 4) {
+      //     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+      //       const res = JSON.parse(xhr.responseText)
+      //       console.log(res)
+      //       console.log("请求成功")
+      //       // do something
+      //     } else {
+      //       console.log("请求失败")
+      //     }
+      //   }
+      // }
+      // xhr.send()
+    </script>
+  </body>
+</html>

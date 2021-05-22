@@ -378,12 +378,46 @@ async function writeinhtml(info = "重庆") {
 </div>";
   });
   html += "</div></div>";
-  //把获取的七天天气信息存入echart中的option渲染表
-  var datahigh = sevendays.map(getseventem);
-  var datalow = sevendays.map(getseventemn);
-  option.series[0].data = datahigh;
-  option.series[1].data = datalow;
-  console.log(3, datahigh, datalow);
+
+//模拟mock接口
+async function mockapi() {
+  var mocksevenday
+const Random = Mock.Random;
+Mock.mock(/\.json/, {
+  "temphigh|7": [() => Random.integer(10, 30)],
+  "templow|7": [() => Random.integer(-10, 10)],
+});
+const xhr = new XMLHttpRequest();
+//初始化一个get请求
+xhr.open("get", "hello.json", false);
+//接收返回值
+xhr.onreadystatechange = () => {
+  if (xhr.readyState === 4) {
+    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+      const res = JSON.parse(xhr.responseText);
+      console.log(res);
+      mocksevenday=res;
+    } else {
+      console.log("请求失败");
+    }
+  }
+};
+xhr.send();
+return mocksevenday
+}
+ var mocksevenday=await mockapi()
+ //把获取的七天天气信息存入echart中的option渲染表
+ //获取的真实数据
+  // var datahigh = sevendays.map(getseventem);
+  // var datalow = sevendays.map(getseventemn);
+  // option.series[0].data = datahigh;
+  // option.series[1].data = datalow;
+  // console.log(3, datahigh, datalow);
+  //mock出的数据 
+  console.log(3,mockapi());
+  option.series[0].data = mocksevenday.temphigh;
+  option.series[1].data = mocksevenday.templow;
+ 
   html +=
     '<div class="sevendaysout">\
     <div class="sevendaysin"><div class="sevendaysinfo">';
