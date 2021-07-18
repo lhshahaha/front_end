@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name" name="nickname">
+    <button id="setname">设置名字</button>
+    <input type="text" id="text" name="text">
+    <button id="sendmsg">发送信息</button>
+    <div id="content">
+    </div>
+    <script>
+        document.getElementById("setname").onclick=function()
+        {
+            var name=document.getElementById("name").value;
+            if(name=='')
+            {
+                return;
+            }
+            var ws=null;
+            ws=new WebSocket('ws://localhost:8000');
+            ws.onopen=function()
+            {
+                ws.send(JSON.stringify(
+                    {
+                        name:name,
+                        type:'setname'
+                    }))
+            }
+            document.getElementById('sendmsg').onclick=function()
+            {
+                ws.send
+                (
+                    JSON.stringify({
+                        text:document.getElementById('text').value,
+                        type:'text'
+                    })
+                )
+            }
+            ws.onmessage=function(req)
+            {
+                var p=document.createElement('p');
+                p.innerHTML=req.data;
+                document.getElementById('content').appendChild(p);
+            }
+        }
+    </script>
+</body>
+    
+</html>

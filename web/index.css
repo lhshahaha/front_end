@@ -1,0 +1,25 @@
+.front
+{
+    display: flex;
+    
+    margin: 5px;
+}
+.front form
+{
+    margin: auto;
+}
+.imag
+{
+    display: flex;
+    
+    margin: 5px;
+}
+.imag div
+{
+    margin: auto;
+}
+.imag img
+{
+    width: 1000px;
+    height: 500px;
+}

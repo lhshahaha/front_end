@@ -38,7 +38,7 @@ function writesearch(res) {
     //实例化XMLHttpRequest对象
     const xhr = new XMLHttpRequest();
     //初始化一个get请求
-    xhr.open(method, url, syn);
+    xhr.open(method, url, false);
     //接收返回值
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
