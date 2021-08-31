@@ -18,6 +18,7 @@ var getmime = function (extname) {
 const server = http.createServer((req, res) => {
   let { url, method } = req;
   url = url == "/" ? "/index.html" : url;
+  console.log('url',url)
   let extname = path.extname(url);
   const Path = url.split("?")[0];
   const query = querystring.parse(url.split("?")[1]);

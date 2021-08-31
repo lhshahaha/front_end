@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="user.name" type="text" value="" name="name"><br>
+        <input v-model="user.password" type="password" value="" name="password"><br>
+        <button @click="register">注册</button>
+        <button @click="enter">登录</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>      
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:
+        {
+            user:{
+                name:"",
+                password:""
+            }
+        },
+        methods:
+        {
+            register: function()
+            {
+                if(this.user.name==""||this.user.password=="")
+                {
+                    alert("名字和密码不能为空")
+                }
+                else
+                {
+                    axios.post('http://localhost:8000/?way=register',this.user)
+                    .then(function(response)
+                    {
+                        
+                        if(response.data)
+                        {
+                            alert("注册成功")
+                        }
+                        else
+                        {
+                            alert("注册失败")
+                        }
+                    }).catch(function(err){console.log(err)})
+                }
+            },
+            enter:function()
+            {
+                axios.post('http://localhost:8000/?way=enterin',this.user)
+                    .then(function(response)
+                    {
+                        
+                        if(response.data)
+                        {
+                            console.log(response.data)
+                            localStorage.setItem("csaaccount",response.data);
+                            window.location.href="http://localhost:8000/"
+                        }
+                        else
+                        {
+                            alert("登录失败")
+                        }
+                    }).catch(function(err){console.log(err)})
+            }
+        }
+    })
+</script>
+</body>
+</html>

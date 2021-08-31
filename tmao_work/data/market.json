@@ -1,0 +1,17 @@
+[
+    { "hotname": "美妆", "isnew": false, "ishot": true },
+    { "hotname": "电器", "isnew": false, "ishot": false },
+    { "hotname": "女装", "isnew": false, "ishot": false },
+    { "hotname": "男装", "isnew": false, "ishot": false },
+    { "hotname": "女鞋", "isnew": false, "ishot": false },
+    { "hotname": "男鞋", "isnew": true, "ishot": false },
+    { "hotname": "内衣", "isnew": false, "ishot": false },
+    { "hotname": "箱包", "isnew": false, "ishot": false },
+    { "hotname": "运动", "isnew": true, "ishot": false },
+    { "hotname": "母婴", "isnew": false, "ishot": false },
+    { "hotname": "家装", "isnew": false, "ishot": false },
+    { "hotname": "医药", "isnew": false, "ishot": false },
+    { "hotname": "食品", "isnew": false, "ishot": false },
+    { "hotname": "配饰", "isnew": false, "ishot": true },
+    { "hotname": "汽车", "isnew": false, "ishot": true }
+  ]

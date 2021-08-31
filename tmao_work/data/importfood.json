@@ -1,0 +1,121 @@
+{
+    "content": [
+      {
+        "name": "进口牛奶",
+        "content": [
+          { "hotname": "进口纯牛奶", "ishot": true },
+          { "hotname": "进口酸奶", "ishot": true },
+          { "hotname": "进口成人奶粉", "ishot": false },
+          { "hotname": "进口含乳饮料", "ishot": false },
+          { "hotname": "进口有机牛奶", "ishot": false },
+          { "hotname": "进口酸奶粉", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口粮油/速食/调料",
+        "content": [
+          { "hotname": "进口橄榄油", "ishot": false },
+          { "hotname": "进口其他油", "ishot": true },
+          { "hotname": "进口大米", "ishot": false },
+          { "hotname": "进口方便面", "ishot": false },
+          { "hotname": "进口意面", "ishot": false },
+          { "hotname": "其他速食", "ishot": false },
+          { "hotname": "进口罐头", "ishot": false },
+          { "hotname": "进口调味料", "ishot": false },
+          { "hotname": "进口调味酱", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口厨房用品",
+        "content": [
+          { "hotname": "进口餐具/水杯", "ishot": false },
+          { "hotname": "进口厨具/锅具", "ishot": false },
+          { "hotname": "进口一次性用品", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口零食",
+        "content": [
+          { "hotname": "进口蜜饯果干", "ishot": false },
+          { "hotname": "进口薯片/膨化", "ishot": true },
+          { "hotname": "进口坚果", "ishot": false },
+          { "hotname": "进口糖果", "ishot": false },
+          { "hotname": "进口果冻布丁", "ishot": false },
+          { "hotname": "进口肉干", "ishot": true },
+          { "hotname": "进口巧克力", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口母婴用品",
+        "content": [
+          { "hotname": "进口纸尿裤", "ishot": false },
+          { "hotname": "进口母婴洗护", "ishot": false },
+          { "hotname": "进口婴儿奶粉", "ishot": false },
+          { "hotname": "进口辅食", "ishot": false },
+          { "hotname": "进口婴幼儿营养品", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口个人护理",
+        "content": [
+          { "hotname": "进口洗发水", "ishot": false },
+          { "hotname": "进口护发", "ishot": false },
+          { "hotname": "进口沐浴", "ishot": false },
+          { "hotname": "进口私处洗液", "ishot": true },
+          { "hotname": "进口牙膏", "ishot": false },
+          { "hotname": "进口牙刷", "ishot": false },
+          { "hotname": "进口漱口水", "ishot": false },
+          { "hotname": "进口面部护理", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口饼干/糕点",
+        "content": [
+          { "hotname": "进口饼干", "ishot": false },
+          { "hotname": "进口糕点", "ishot": false },
+          { "hotname": "进口面包干", "ishot": false },
+          { "hotname": "进口威化", "ishot": true },
+          { "hotname": "进口苏打饼干", "ishot": false },
+          { "hotname": "进口曲奇", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口酒饮",
+        "content": [
+          { "hotname": "进口葡萄酒", "ishot": false },
+          { "hotname": "进口啤酒", "ishot": false },
+          { "hotname": "进口起泡酒", "ishot": false },
+          { "hotname": "进口洋酒", "ishot": false },
+          { "hotname": "进口果汁", "ishot": false },
+          { "hotname": "进口水", "ishot": false },
+          { "hotname": "进口咖啡饮料", "ishot": true },
+          { "hotname": "进口碳酸饮料", "ishot": false }
+        ]
+      },
+      {
+        "name": "进口冲调保健",
+        "content": [
+          { "hotname": "进口咖啡", "ishot": false },
+          { "hotname": "进口茶/蜂蜜", "ishot": false },
+          { "hotname": "进口谷物冲饮", "ishot": false },
+          { "hotname": "进口奶茶", "ishot": true },
+          { "hotname": "进口茶叶", "ishot": false },
+          { "hotname": "进口保健品", "ishot": false },
+          { "hotname": "进口维生素", "ishot": false }
+        ]
+      }
+    ],
+    "brand": [
+      { "hotname": "安佳牛奶", "ishot": true },
+      { "hotname": "中原G7", "ishot": false },
+      { "hotname": "家乐氏", "ishot": false },
+      { "hotname": "巴黎水", "ishot": false },
+      { "hotname": " 汤姆农场", "ishot": false },
+      { "hotname": "小老板", "ishot": false }
+    ],
+    "activity": [
+      { "hotname": " 德亚牛奶", "ishot": false },
+      { "hotname": "进口谷物冲饮", "ishot": false }
+    ],
+    "img": "http://img.alicdn.com/tfs/TB1lyxzSXXXXXaPapXXXXXXXXXX-196-90.jpg"
+  }

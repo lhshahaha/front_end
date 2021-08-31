@@ -7,36 +7,38 @@ function animation(wrap_direction) {
     
     clearInterval(wrap.change);
     if(wrap_direction){
-  if(newLeft==-5000)
+  if(newLeft<=-3750)
   {
       newLeft=0;
   }
   wrap.style.left = newLeft + "px";
-  var positionLeft = newLeft-1000;
+  var positionLeft = newLeft-750;
   console.log(newLeft);
   wrap.change = setInterval(function () {
     newLeft -= 10;
     wrap.style.left = newLeft + "px";
     if (newLeft <= positionLeft) {
+      wrap.style.left = positionLeft + "px";
         clearInterval(wrap.change);
       }
-  }, 10);}
+  }, 5);}
   else
   {
-    if(newLeft==-1000)
+    if(newLeft>=-750)
     {
-        newLeft=-6000;
+        newLeft=-4500;
     }
     wrap.style.left = newLeft + "px";
-    var positionLeft = newLeft+1000;
+    var positionLeft = newLeft+750;
     console.log(newLeft);
     wrap.change = setInterval(function () {
       newLeft += 10;
       wrap.style.left = newLeft + "px";
       if (newLeft >= positionLeft) {
+        wrap.style.left = positionLeft + "px";
           clearInterval(wrap.change);
         }
-    }, 10);
+    }, 5);
   }
 }
 var clickflag=1;
@@ -51,7 +53,7 @@ next.onclick = function () {
         {
             clickflag=1;
             next.style.cursor="pointer";
-        },2000);
+        },1000);
     }
 };
 prev.onclick = function () {
@@ -65,12 +67,12 @@ prev.onclick = function () {
         {
             clickflag=1;
             next.style.cursor="pointer";
-        },2000);
+        },1000);
     }
 };
 function next_pic() {
   //var newLeft;
-  if (wrap.style.left === "-5000px") {
+  if (wrap.style.left === "-3750px") {
     animation(1);
     index = 0;
   } else {
@@ -83,7 +85,7 @@ function next_pic() {
 }
 function prev_pic() {
   //var newLeft;
-  if (wrap.style.left === "-1000px") {
+  if (wrap.style.left === "-750px") {
     //newLeft = -4000;
     animation(0);
     index = 4;
@@ -105,9 +107,9 @@ function autoPlay() {
     {
         clickflag=1;
         next.style.cursor="pointer";
-    },2000);
+    },1000);
     next_pic();
-  }, 3000);
+  }, 4000);
 }
 var container = document.querySelector(".container");
 container.onmouseenter = function () {
@@ -127,7 +129,7 @@ function showCurrentDot() {
 for (var i = 0, len = dots.length; i < len; i++) {
   (function (i) {
     dots[i].onclick = function () {
-      wrap.style.left = -1000-(i* 1000) + "px";
+      wrap.style.left = -750-(i* 750) + "px";
       index = i;
       showCurrentDot();
     };

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="searchbar">
+        <div class="selectcity">
+          <h3>{{selectedcity}}<img src="./png/selecttra.png" alt="" /></h3>
+          <div class="citydetail">
+            <div class="hotcity">
+              <div class="hotcityhead">热门城市:</div>
+              <div class="hotcitycontent">
+                <div
+                  v-for="(item,index) in hotcity"
+                  @click="selcity(item.cityname)"
+                  class="hotcityitem"
+                >
+                  {{item.cityname}}
+                </div>
+              </div>
+            </div>
+            <div class="letters">
+              <div
+                @mouseover="changeletters(0)"
+                class="letter"
+                :class="{'letteractive':isletter===0}"
+              >
+                ABCDE
+              </div>
+              <div
+                @mouseover="changeletters(1)"
+                class="letter"
+                :class="{'letteractive':isletter===1}"
+              >
+                FGHJ
+              </div>
+              <div
+                @mouseover="changeletters(2)"
+                class="letter"
+                :class="{'letteractive':isletter===2}"
+              >
+                KLMNP
+              </div>
+              <div
+                @mouseover="changeletters(3)"
+                class="letter"
+                :class="{'letteractive':isletter===3}"
+              >
+                QRSTW
+              </div>
+              <div
+                @mouseover="changeletters(4)"
+                class="letter"
+                :class="{'letteractive':isletter===4}"
+              >
+                XYZ
+              </div>
+            </div>
+            <div class="letterdetail">
+              <div class="firlettercity" v-for="item in letters[isletter]">
+                <div class="firletter">{{item.letter}}</div>
+                <div class="lettercity">
+                  <div
+                    class="cities"
+                    v-for="(city,index) in item.citysname"
+                    @click="selcity(city.cityname)"
+                  >
+                    {{city.cityname}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="search">
+          <transition name="searchempty" mode="out-in">
+            <input
+              class="searchinput"
+              v-if="!searchbaractive"
+              key="first"
+              type="text"
+              placeholder="搜索天猫超市商品"
+              v-model="searchgood"
+              @keyup.enter="searchgoods"
+              @focus="focusbar"
+            />
+            <input
+              class="searchinput"
+              v-if="searchbaractive"
+              key="second"
+              type="text"
+              placeholder="搜索天猫超市商品"
+              v-model="searchgood"
+              @keyup.enter="searchgoods"
+              @focus="focusbar"
+            />
+          </transition>
+          <button @click="searchgoods" class="searchsubmit">搜索</button>
+          <div class="searchrecommend" v-show="showsearch">
+            <div
+              class="recommenditem"
+              v-for="(item,index) in seargoods"
+              @click="clicksearchgood(item.name)"
+            >
+              {{item.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gooditems">
+        <div v-for="item in goods" class="goodcontainer">
+          <div class="listgood">
+            <img :src="item.img" alt="" />
+            <h3>【{{item.name}}】</h3>
+            <p class="goodtittle">{{item.desc}}</p>
+            <div class="price">
+              <div class="yen">¥</div>
+              <div class="pricenum">{{item.price}}</div>
+            </div>
+            <button
+              @click="putincar(good)"
+              class="putincar"
+              :class="{'carout':item.issold}"
+            ></button>
+            <div v-if="item.issold" class="shopover"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          selectedcity: "",
+          searchbaractive: false,
+          goods: [],
+          letters: [],
+          hotcity: [],
+          isletter: 0,
+          searchgood: "",
+          showsearch: false,
+          seargoods: [],
+        },
+        mounted() {
+          window.addEventListener("click", function (item) {
+            if (item.target.className != "searchinput") {
+              that.$nextTick(() => {
+                that.showsearch = false;
+              });
+            }
+          });
+          var info = window.location.href.split("?")[1];
+          var info1 = info.split("&")[0];
+          var info2 = info.split("&")[1];
+          this.selectedcity = decodeURI(info1.split("=")[1]);
+          this.searchgood = decodeURI(info2.split("=")[1]);
+          console.log(decodeURI(info1.split("=")[1]));
+          function getletters() {
+            return axios.get("http://localhost:8000/data/letters.json");
+          }
+          function gethotcity() {
+            return axios.get("http://localhost:8000/data/hotcity.json");
+          }
+          function getgoods() {
+            return axios.get(
+              decodeURI(window.location.href) + "&way=getsearch"
+            );
+          }
+          that = this;
+          axios.all([getletters(), getgoods(), gethotcity()]).then(
+            axios.spread(function (letters, goods, hotcity) {
+              that.letters = letters.data;
+              that.goods = goods.data;
+              that.hotcity = hotcity.data;
+              console.log("goods", goods);
+            })
+          );
+        },
+        watch: {
+          searchgood: function () {
+            var that = this;
+            console.log(this.showsearch)
+            this.showsearch=true
+            axios
+              .get(
+                "http://localhost:8000/search.html?city=" +
+                  that.selectedcity +
+                  "&goodname=" +
+                  that.searchgood +
+                  "&way=getsearch"
+              )
+              .then((response) => {
+                that.seargoods = response.data;
+                console.log("goods", that.seargoods);
+              });
+          },
+        },
+        methods: {
+          focusbar: function () {
+            if (this.searchgood) {
+              this.showsearch = true;
+              console.log(
+                this.showsearch,
+                this.seargoods,
+                this.searchgood,
+                this.selectcity
+              );
+            }
+          },
+          clicksearchgood: function (name) {
+            window.location.href =
+              "http://localhost:8000/search.html?city=" +
+              this.selectedcity +
+              "&goodname=" +
+              name;
+          },
+          searchgoods: function () {
+            if (this.searchgood) {
+              axios
+                .get(
+                  "http://localhost:8000/search.html?city=" +
+                    this.selectedcity +
+                    "&goodname=" +
+                    this.searchgood +
+                    "&way=getsearch"
+                )
+                .then((response) => {
+                  this.goods = response.data;
+                  console.log("goods", this.goods);
+                });
+            } else {
+              this.searchbaractive = !this.searchbaractive;
+            }
+          },
+
+          changeletters: function (x) {
+            this.isletter = x;
+          },
+          selcity: function (cityname) {
+            this.selectedcity = cityname;
+            console.log(this.selectedcity);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

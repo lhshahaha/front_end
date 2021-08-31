@@ -1,65 +1,73 @@
 .container {
     position: relative;
-    width: 1000px;
-    height: 400px;
-    box-shadow: 0 0 5px green;
+    width: 750px;
+    height: 291px;
     overflow: hidden;
 }        
 .wrap {
     position: absolute;
-    width: 7000px;
-    height: 400px;
+    width:4500px;
+    height: 291px;
     z-index: 1;
     left:-1000px;
 }
 .container .wrap img {
     float: left;
-    width: 1000px;
-    height: 400px;
+    width: 750px;
+    height: 291px;
 }
 .container .buttons {
     position: absolute;
-    right: 0px;
-    bottom:20px;
-    width: 150px;
-    height: 10px;
-    z-index: 2;
+    right: 15px;
+    bottom:10px;
+    z-index: 2;    text-align: center;
+    
 }
 .container .buttons span {
-    margin-left: 5px;
     display: inline-block;
     width: 20px;
+    font-size: 12px;
     height: 20px;
-    border-radius: 50%;
-    background-color: green;
-    text-align: center;
-    color:white;
-    cursor: pointer;
+    line-height: 20px;
+    border-radius: 20px;
+    background: #000;
+    color: #fff;
 }
 .container .buttons span.on{
-    background-color: red;
+    background-color: #c40000;
 }
 .container .arrow {
-    position: absolute;
-    top: 35%;
-    color: green;
-    padding:0px 14px;
-    border-radius: 50%;
-    font-size: 50px;
-    z-index: 2;
     display: none;
+    position: absolute;
+    font-family: iconfont-chaoshi;
+    display: none;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    background: #000;
+    text-decoration: none;
+    opacity: .3;
+    filter: alpha(opacity=30);
+    top: 50%;
+    margin-top: -25px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    z-index: 2;
 }
 .container .arrow_left {
-    left: 10px;
+    padding: 0 9px 0 7px;
+    left: 5px;
     cursor: pointer;
 }
 .container .arrow_right {
-    right: 10px;
+    padding: 0 7px 0 9px;
+    right: 5px;
     cursor: pointer;
 }
 .container:hover .arrow {
     display: block;
-}
-.container .arrow:hover {
-    background-color: rgba(0,0,0,0.2);
 }

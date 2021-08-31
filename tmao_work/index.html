@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>天猫</title>
+  <link rel="stylesheet" type="text/css" href="./index.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="fronttittle" :style="fronttittle.color">
+      <div class="frontimg">
+        <a :href="fronttittle.url">
+          <img :src="fronttittle.img" />
+        </a>
+      </div>
+    </div>
+    <div class="login_tittle">
+      <div class="login_content">
+        <div class="login_text">
+          <div class="login_textitem">
+            <img src="./png/homepage.png" alt="" />
+            <a href="https://www.tmall.com?spm=a3204.7084713.a2226mz.1.E4tthR">天猫首页</a>
+          </div>
+          <div v-if="user.name" class="login_textitem">
+            Hi，<a href="">{{user.name}}</a>
+          </div>
+          <div v-else class="login_textitem">喵，欢迎来天猫</div>
+          <div v-if="user.name" class="login_textitem">
+            <a href="">积分:尚未开发，敬请期待</a>
+          </div>        
+            <div v-else class="login_textitem">
+            <a href="./login.html">请登录</a>
+          </div>
+          <div v-if="user.name" class="login_textitem">
+            <a @click="unlogin" href="">退出</a>
+          </div>          
+          <div v-else class="login_textitem">
+            <a href="./login.html">免费注册</a>
+          </div>
+        </div>
+        <div class="login_text">
+          <div class="login_textitem login_menu">
+            <a href="">我的淘宝 </a>
+            <div class="menu_tra"></div>
+            <div class="login_menucontent">
+              <a href="">已买到的宝贝</a>
+              <a href="">已卖出的宝贝</a>
+            </div>
+          </div>
+          <div class="login_textitem">
+            <img src="./png/shopcar.png" alt="" />
+            <a href="">购物车</a>
+          </div>
+          <div class="login_textitem login_menu login_favofiletip">
+            <a href="">收藏夹 </a>
+            <div class="menu_tra"></div>
+            <div class="login_menucontent login_favofile">
+              <a href="">收藏的宝贝</a>
+              <a href="">收藏的店铺</a>
+            </div>
+          </div>
+          <div class="login_line"></div>
+          <div class="login_textitem login_phone">
+            <img src="./png/phone.png" alt="" />
+            <a href="">手机版</a>
+            <div class="login_phonetra"></div>
+            <div class="login_menucontent login_phoneimg">
+              <img src="./png/tianmaophone.png" alt="" />
+            </div>
+          </div>
+          <div class="login_textitem">
+            <a href="">淘宝网</a>
+          </div>
+          <div class="login_textitem login_menu">
+            <a href="">商家支持 </a>
+            <div class="menu_tra"></div>
+            <div class="login_menucontent login_salersup">
+              <h3>商家：</h3>
+              <div class="login_salerdetal">
+                <a href="">商家中心</a>
+                <div class="block"></div>
+                <a href="">天猫规则</a>
+                <a href="">商家入驻</a>
+                <div class="block"></div>
+                <a href="">运营服务</a>
+                <a href="">商家品控</a>
+                <div class="block"></div>
+                <a href="">商家工具</a>
+                <a href="">天猫智库</a>
+                <div class="block"></div>
+                <a href="">喵言喵语</a>
+              </div>
+              <h3>帮助</h3>
+              <div class="login_salerdetal login_salerhelp">
+                <a href="">商家服务大厅</a>
+                <a href="">问商友</a>
+              </div>
+            </div>
+          </div>
+          <div class="login_textitem login_menu login_navigate">
+            <img src="./png/navigate.png" alt="" />网站导航
+            <div class="menu_tra"></div>
+            <div class="login_menucontent login_navigatecontent">
+              <div class="navigatehot">
+                <h2>热点推荐 Hot</h2>
+                <div class="hotcontent">
+                  <div v-for="(item,index) in hotpoint" class="navigateitem" :class="{'navigateitemright':(index+1)%5==0}">
+                    <a href="">{{item.hotname}}
+                      <div v-if="item.isnew" class="icon iconnew"></div>
+                      <div v-if="item.ishot" class="icon iconhot"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="navigatehot navigatemarket">
+                <h2>行业市场 Market</h2>
+                <div class="hotcontent">
+                  <div v-for="(item,index) in market" class="navigateitem" :class="{'navigateitemright':(index+1)%5==0}">
+                    <a href="">{{item.hotname}}
+                      <div v-if="item.isnew" class="icon iconnew"></div>
+                      <div v-if="item.ishot" class="icon iconhot"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="navigatehot servehelp">
+                <h2>服务指南 Help</h2>
+                <div class="hotcontent">
+                  <div class="navigateitem">
+                    <a href="">帮助中心</a>
+                  </div>
+                  <div class="navigateitem navigateitemright">
+                    <a href="">品质保障</a>
+                  </div>
+                  <div class="navigateitem">
+                    <a href="">特殊服务</a>
+                  </div>
+                  <div class="navigateitem navigateitemright">
+                    <a href="">7天退换货</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="searchbar">
+      <div class="tianmaocaoshi">
+        <a href=""><img src="./png/tianmaochaoshi.png" alt="" /> </a>
+      </div>
+      <div class="selectcity">
+        <h3>{{selectedcity}}<img src="./png/selecttra.png" alt="" /></h3>
+        <div class="citydetail">
+          <div class="hotcity">
+            <div class="hotcityhead">热门城市:</div>
+            <div class="hotcitycontent">
+              <div v-for="(item,index) in hotcity" @click="selectcity(item.cityname)" class="hotcityitem">{{item.cityname}}</div>
+            </div>
+          </div>
+          <div class="letters">
+            <div @mouseover="changeletter(0)" class="letter" :class="{'letteractive':isletter===0}">ABCDE</div>
+            <div @mouseover="changeletter(1)" class="letter" :class="{'letteractive':isletter===1}">FGHJ</div>
+            <div @mouseover="changeletter(2)" class="letter" :class="{'letteractive':isletter===2}">KLMNP</div>
+            <div @mouseover="changeletter(3)" class="letter" :class="{'letteractive':isletter===3}">QRSTW</div>
+            <div @mouseover="changeletter(4)" class="letter" :class="{'letteractive':isletter===4}">XYZ</div>
+          </div>
+          <div class="letterdetail">
+            <div class="firlettercity" v-for="item in letters[isletter]">
+              <div class="firletter">{{item.letter}}</div>
+              <div class="lettercity">
+                <div class="cities" v-for="(city,index) in item.citysname" @click="selectcity(city.cityname)">{{city.cityname}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search">
+        <transition name="searchempty" mode="out-in">
+        <input class="searchinput" v-if="!searchbaractive" key="first" type="text" placeholder="搜索天猫超市商品" v-model="searchgood" @keyup.enter="searchgoods" @focus="focusbar"/>
+        <input class="searchinput" v-if="searchbaractive" key="second" type="text" placeholder="搜索天猫超市商品" v-model="searchgood" @keyup.enter="searchgoods" @focus="focusbar"/>
+        </transition>
+        <button @click="searchgoods" class="searchsubmit">搜索</button>
+        <div class="searchrecommend" v-show="showsearch">
+          <div class="recommenditem" v-for="(item,index) in seargoods" @click="clicksearchgood(item.name)" v-html="showsearchwords(item.name)"></div>
+        </div>
+      </div>
+      <div class="somelink">
+        <a href="">
+          <img class="searchlinktxt" src="./png/searchlink1.png" alt="" />
+        </a>
+        <a href="">
+          <img class="searchlinktxt" src="./png/searchlink2.png" alt="" />
+        </a>
+        <a href="">
+          <img src="./png/searchlink3.png" alt="" />
+        </a>
+        <a href="">
+          <img class="searchoutimg" src="./png/searchlink4.png" alt="" />
+        </a>
+      </div>
+    </div>
+    <div class="content">
+      <div :class="{'scrolltittle':tittle}">
+      <div class="contenttittle">
+        <div @mouseover="showcategory" class="goodsclass">所有产品分类</div>
+        <div class="tittleright">
+          <div class="tittleselect">
+            <a href="" class="tittleselectboder">首页</a>
+            <a href=""> 企业采购 </a>
+          </div>
+          <div class="shopcar">
+            <div class="shopcarimg">
+              <img src="./png/shopcardetail.png" alt="" />
+            </div>
+            <div class="shopcartxt">
+              <div class="shopcarcash">¥{{fixednum(shopcar.price)}}</div>
+              <div class="shopcarkg">元 &nbsp {{shopcar.weight}}kg</div>
+            </div>
+            <div class="shopcararrow"></div>
+            <div class="shopcardetail">
+              <div class="shopcardetailtittle">
+                <div class="SCDT_class">商品</div>
+                <div class="SCDT_class">数量</div>
+                <div class="SCDT_class">价格</div>
+                <div class="SCDT_class">删除</div>
+              </div>
+              <div class="shopcarcontent">
+                <div v-if="user.name">
+                  <div class="shopcontent" v-if="user.goods">
+                    <div class="shoptittle">天猫超市</div>
+                    <div v-for="(item,index) in user.goods" class="usercar" :class="{'usercarbottom':index>0}">
+                      <a href=""><img :src="item.img" alt=""></a>
+                      <div class="itemnum">
+                        <div @click="minus(index)" class="count" :class="[item.num>1?'minus':'unminus']"></div>
+                        <input class="num" type="text" :value="item.num">
+                        <div @click="plus(index)" class="count plus"></div>
+                      </div>
+                      <div class="totalprice">￥{{fixednum(item.price*item.num)}}</div>
+                      <div @click="deleted(index)" class="deleted"></div>
+                    </div>
+                  </div>
+                  <div class="emptycar" v-else>当前购物车为空</div>
+                </div>
+                <div v-else class="unlog_shopcar">
+                  <div>
+                    如果您还未登录，可能导致购物车为空，请
+                    <a href="./login.html">马上登录</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="goodstittle">
+        <div @mouseleave="disappearcate" :class="{'scrollcategory':goodclass}" class="category">
+          <div class="categoryborder">
+            <div class="categorycontent">
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_plane"></div>
+                    <a href="">进口食品</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">牛奶</a>
+                  <a href="">零食</a>
+                  <a href="">饼干</a>
+                  <a href="">方便面</a>
+                  <a href="">粮油</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_drink"></div>
+                    <a href="">食品饮料</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">牛奶</a>
+                  <a href="">坚果</a>
+                  <a href="">饼干</a>
+                  <a href="">方便面</a>
+                  <a href="">粮油</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_food"></div>
+                    <a href="">粮油副食</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">油</a>
+                  <a href="">大米</a>
+                  <a href="">调料</a>
+                  <a href="">方便面</a>
+                  <a href="">火腿肠</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_hairdressing"></div>
+                    <a href="">美容洗护</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">洗发</a>
+                  <a href="">家电</a>
+                  <a href="">玻璃杯</a>
+                  <a href="">衣架</a>
+                  <a href="">锅</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_furniture"></div>
+                    <a href="">家居家电</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">毛巾</a>
+                  <a href="">家电</a>
+                  <a href="">玻璃杯</a>
+                  <a href="">衣架</a>
+                  <a href="">锅</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content CIC_1">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_paper"></div>
+                    <a href="">家庭清洁</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">纸</a>
+                  <a href="">洗衣</a>
+                  <a href="">洗洁精</a>
+                  <a href="">垃圾袋</a>
+                  <a href="">洁厕</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content CIC_2">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="categoryitem">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_child"></div>
+                    <a href="">母婴用品</a>
+                  </div>
+                  <div class="CI_tra">&lt</div>
+                </div>
+                <div class="CI_item">
+                  <a href="">纸尿裤</a>
+                  <a href="">奶粉</a>
+                  <a href="">湿巾</a>
+                  <a href="">洗护</a>
+                  <a href="">玩具</a>
+                </div>
+                <div class="CI_selected">
+                  <div class="CIS_tra"></div>
+                </div>
+                <div class="CI_content CIC_3">
+                  <div class="CIC_in">
+                    <div v-for="item in importfood.content" class="CIC_item">
+                      <h4>{{item.name}}</h4>
+                      <div class="CICI_item">
+                        <a v-for="good in item.content" :class="[good.ishot ?'hotgoodsitem':'goodsitem']"  href="">{{good.hotname}}</a>
+                      </div>
+                    </div>
+                    <div class="CIC_ad">
+                      <div class="CICA_brands">
+                        <h4>品牌</h4>
+                        <div class="CICAB_content">
+                          <a v-for="item in importfood.brand" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">{{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <div class="CICA_brandsact">
+                        <h4>品牌活动</h4>
+                        <div class="CICABA_content">
+                          <a v-for="item in importfood.activity" :class="[item.ishot?'hotgoodsitem':'goodsitem']" href="">. {{item.hotname}}</a>
+                        </div>
+                      </div>
+                      <a class="ad_banner" href="">
+                        <img :src="importfood.img" alt="" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="CI_exa">
+                <div class="CI_tittle">
+                  <div class="CI_name">
+                    <div class="CI_nameimg CI_recharge"></div>
+                    <a href="">生活服务</a>
+                  </div>
+                </div>
+                <div class="CI_item CIE_item">
+                  <a href="">信用卡还款</a>
+                  <a href="">转账</a>
+                  <a href="">充话费</a>
+                  <a href="">点券</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="courtyard">
+          <div class="container">
+            <div class="wrap" style="left: -750px">
+              <img :src="wrapimg[5]" />
+              <img v-for="item in wrapimg" :src="item"/>
+              <img :src="wrapimg[0]" />
+            </div>
+            <div class="buttons">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span>5</span>
+              <span>6</span>
+            </div>
+            <div class="arrow arrow_left">&lt;</div>
+            <div class="arrow arrow_right">&gt;</div>
+          </div>
+          <div class="courtyard_ad">
+            <div class="row_1">
+              <a v-for="(item,index) in courtyard_ad" v-if="index<3" href=""><img  :src="item" alt="" /></a>
+            </div>
+            <div class="row_2">
+              <a v-for="(item,index) in courtyard_ad" v-if="index>=3" href=""><img :src="item" alt="" /></a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar">
+          <a  v-for="item in sidebar" href=""><img :src="item" alt="" /></a>
+        </div>
+      </div>
+      <div class="goods">
+        <div v-for="(item,index) in good" :id="'C'+index" class="good">
+          <div class="goodheader">
+            <h2>{{item.goodname}}</h2>
+          </div>
+          <div class="goodcontent">
+            <div class="recommend" >
+              <div class="words" :style={background:backcolor[index]}>
+                <a v-for="(itemclass,indexc) in item.goodclass" href="" class="word" @mouseover="mouseover(indexc,index)" @mouseleave="mouseleave" :style="{'background-color':actindex==indexc&&color==index ?backcolor[color] :'white'}">
+                  <div  class="wordinner">
+                    <div >{{itemclass}}</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="goodslist">
+              <div v-for="itemgood in item.goods" class="goodcontainer">
+                <div class="listgood">
+                  <img :src="itemgood.img" alt="" />
+                  <h3>【{{itemgood.name}}】</h3>
+                  <p class="goodtittle">{{itemgood.desc}}</p>
+                  <div class="price">
+                    <div class="yen">¥</div>
+                    <div class="pricenum">{{itemgood.price}}</div>
+                  </div>
+                  <button @click="putincar(itemgood)" class="putincar" :class="{'carout':itemgood.issold}"></button>
+                  <div v-if="itemgood.issold" class="shopover"></div>
+                </div>
+              </div>
+            </div>
+            <div class="promo">
+              <img src="./png/promo.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contentfoot">
+        <div class="CFborder">
+          <div class="CFfootitem">
+            <h3><img src="./png/activity.png" alt="" />活动</h3>
+            <div class="CFIdetail">
+              <a href="">新人活动</a>
+              <a href="">一站式购齐</a>
+            </div>
+          </div>
+          <div class="CFfootitem">
+            <h3><img src="./png/price.png" alt="" />价格</h3>
+            <div class="CFIdetail">
+              <a href="">0-10元</a>
+              <a href="">10-30元</a>
+              <a href="">30-70元</a>
+              <a href="">70元以上</a>
+            </div>
+          </div>
+          <div class="CFfootitem">
+            <h3><img src="./png/goods.png" alt="" />日用百货</h3>
+            <div class="CFIdetail">
+              <a href="">纸品争霸</a>
+              <a href="">时尚买手</a>
+              <a href="">美容江湖</a>
+              <a href="">巾彩秀</a>
+            </div>
+          </div>
+          <div class="CFfootitem">
+            <h3><img src="./png/foods.png" alt="" />食品</h3>
+            <div class="CFIdetail">
+              <a href="">酒水活动</a>
+              <a href="">疯狂厨房</a>
+              <a href="">零食欢乐购</a>
+              <a href="">淘零食</a>
+            </div>
+          </div>
+          <div class="CFfootitem">
+            <h3><img src="./png/plane.png" alt="" />进口食品</h3>
+            <div class="CFIdetail">
+              <a href="">进口洋货</a>
+              <a href="">进口饼干</a>
+              <a href="">进口零食</a>
+              <a href="">进口牛奶</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footercontent">
+        <img src="./png/tmaocs.png" class="logo caoshi" alt="" />
+        <div class="FCitem">
+          <div class="FCIname">
+            <a href="">购物指南</a>
+          </div>
+          <div class="FCIcontent">
+            <a href="">购物流程</a>
+            <a href="">配送时效说明</a>
+            <a href="">配送区域及费用</a>
+            <a href="">购买生鲜须知</a>
+            <a href="">发票流程</a>
+            <a href="">商品限购说明</a>
+          </div>
+        </div>
+        <div class="FCitem">
+          <div class="FCIname">
+            <a href="">售后服务</a>
+          </div>
+          <div class="FCIcontent">
+            <a href="">退货规则</a>
+            <a href="">退货指南</a>
+            <a href="">保质期说明</a>
+            <a href="">联系客服</a>
+          </div>
+        </div>
+        <div class="FCitem">
+          <div class="FCIname">
+            <a href="">自助服务</a>
+          </div>
+          <div class="FCIcontent">
+            <a href="">订单物流查询</a>
+            <a href="">我的购物车</a>
+            <a href="">我的现金券</a>
+            <a href="">购物常见问题</a>
+            <a href="">建议反馈</a>
+          </div>
+        </div>
+        <div class="FCitem">
+          <div class="FCIname">
+            <a href="">商家服务</a>
+          </div>
+          <div class="FCIcontent">
+            <a href="">关于天猫超市</a>
+            <a href="">入驻天猫超市</a>
+            <a href="">商家常见问题</a>
+            <a href="">淘鲜达招商</a>
+          </div>
+        </div>
+        <div class="FCitem">
+          <div class="FCIname">
+            <div class="code">随时随地逛</div>
+            <div class="codea">
+              <a href=""><img src="./png/code.png" alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="copyrow precopyrow">
+          <a href="">关于天猫</a>
+          <a href=""></a>
+          <a href="">商家服务大厅</a>
+          <a href="">开放平台</a>
+          <a href="">诚聘英才</a>
+          <a href="">联系我们</a>
+          <a href="">网站合作</a>
+          <a href="">法律声明</a>
+          <a href="">隐私权政策</a>
+          <a href="">知识产权</a>
+          <a href="">廉正举报</a>
+          <a href="">不当竞争举报</a>
+        </div>
+        <div class="copyrow precopyrow">
+          <a href="">阿里巴巴集团</a>
+          | <a href="">淘宝网</a> | <a href="">天猫</a> |
+          <a href="">聚划算</a> | <a href="">全球速卖通</a> |
+          <a href="">阿里巴巴国际交易市场</a> | <a href="">1688</a> |
+          <a href="">阿里妈妈</a> | <a href="">飞猪</a> |
+          <a href="">阿里云计算</a> | <a href="">AliOS</a> |
+          <a href="">阿里通信</a> | <a href="">万网</a> |
+          <a href="">高德</a> | <a href="">UC</a> | <a href="">友盟</a> |
+          <a href="">虾米</a> | <a href="">钉钉</a>
+          | 支付宝 | 阿里安全
+        </div>
+        <div class="copyrow latcopyrow">
+          <a href="https://beian.miit.gov.cn/#/Integrated/index">增值电信业务经营许可证：浙B2-20110446</a>
+          <span style="margin-right: 65px">市场名称登记证：工商网市字3301004119号</span>
+          <span>出版物网络交易平台服务经营备案证：
+            新出发浙备字第2019002号</span>
+          <br />
+          <span style="margin-right: 65px">互联网违法和不良信息举报电话：0571-81683755
+            blxxjb@alibaba-inc.com</span>
+          互联网药品信息服务资质证书编号：<a href="https://img.alicdn.com/tps/TB1vi6vPVXXXXbVXVXXXXXXXXXX-927-653.png"
+            data-spm-anchor-id="a3204.7084713.a2226n1.73">浙-（经营性）-2017-0005</a>
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?spm=a3204.7084713.a2226n1.74.YTm6kI&amp;recordcode=33010002000120"
+            data-spm-anchor-id="a3204.7084713.a2226n1.74"><img
+              src="https://img.alicdn.com/tps/TB1yEqRPXXXXXXPXpXXXXXXXXXX-20-20.png"
+              style="position: relative; top: 5px; vertical-align: baseline" />
+            浙公网安备 33010002000120号</a>
+          <br />
+          <span style="margin-right: 65px">医疗器械网络交易服务第三方平台备案：（浙）网械平台备字[2018]第00002号</span>
+          <br />
+          <span style="margin-right: 65px">浙江省网络食品销售第三方平台提供者备案：浙网食A33010002</span>
+
+          <a href="https://jbts.mct.gov.cn/?spm=a3204.7084713.a2226n1.75.YTm6kI"
+            data-spm-anchor-id="a3204.7084713.a2226n1.75">12318举报</a>
+          <a href="http://beian.miit.gov.cn/?spm=a3204.7084713.a2226n1.76.YTm6kI"
+            data-spm-anchor-id="a3204.7084713.a2226n1.76">浙B2-20110446-1</a>
+          <div class="footerfin">© 2003-现在 TMALL.COM 版权所有</b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidegobar" :class="{'appearbar':sidegobar}">
+      <div class="sidegobaritem" :class="{'nowposition':index==pageposition}" v-for="(item,index) in good" @click="gotobar(index)">
+       <span class="bartxt"> {{item.goodname}}</span>&gt;
+      </div>
+      <div class="qrcode">
+        <img src="./png/qrcode.png" alt="">
+      </div>
+      <a class="service">在线咨询<img src="./png/servicetra.png" alt=""></a>
+    </div>
+  </div> 
+  <script src="index.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+    { "hotname": "天猫超市", "isnew": false, "ishot": true },
+    { "hotname": "喵鲜生", "isnew": false, "ishot": false },
+    { "hotname": "科技新品", "isnew": false, "ishot": false },
+    { "hotname": "女装新品", "isnew": true, "ishot": false },
+    { "hotname": "酷玩街", "isnew": false, "ishot": false },
+    { "hotname": "内衣新品", "isnew": false, "ishot": true },
+    { "hotname": "试美妆", "isnew": false, "ishot": false },
+    { "hotname": "运动新品", "isnew": true, "ishot": false },
+    { "hotname": "时尚先生", "isnew": false, "ishot": false },
+    { "hotname": "精明妈咪", "isnew": true, "ishot": false },
+    { "hotname": "吃乐会", "isnew": false, "ishot": false },
+    { "hotname": "企业采购", "isnew": false, "ishot": false },
+    { "hotname": "会员积分", "isnew": false, "ishot": false },
+    { "hotname": "天猫国际", "isnew": false, "ishot": false },
+    { "hotname": "品质频道", "isnew": false, "ishot": true }
+  ]
