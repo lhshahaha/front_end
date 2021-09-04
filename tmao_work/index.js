@@ -218,10 +218,17 @@ var app = new Vue({
       } else {
         this.pageposition = -1;
       }
+      if (window.pageYOffset < 848.6) {
+        this.goodclass = false;
+      }
     },
     showcategory: function () {
       if (window.pageYOffset >= 848.6) {
         this.goodclass = true;
+      }
+      else
+      {
+        this.goodclass = false;
       }
     },
     disappearcate: function () {
@@ -295,6 +302,7 @@ var app = new Vue({
       }
     },
     minus: function (index) {
+      var that = this;
       if (this.user.goods[index].num > 1) {
         this.user.goods[index].num--;
         this.shopcar.price -= this.user.goods[index].price;
@@ -302,18 +310,29 @@ var app = new Vue({
         axios.post("http://localhost:8000/?way=update", that.user);
       }
     },
+    buyall:function()
+    {
+      var that = this;
+      this.user.goods=[];
+      this.shopcar.price=0;
+      this.shopcar.weight=0;
+      axios.post("http://localhost:8000/?way=update", that.user);
+    },
     plus: function (index) {
+      var that = this;
       this.user.goods[index].num++;
       this.shopcar.price += this.user.goods[index].price;
       this.shopcar.weight += this.user.goods[index].weight;
       axios.post("http://localhost:8000/?way=update", that.user);
     },
     deleted: function (index) {
+      var that=this;
       this.shopcar.price -=
         this.user.goods[index].price * this.user.goods[index].num;
       this.shopcar.weight -=
         this.user.goods[index].weight * this.user.goods[index].num;
       this.user.goods.splice(index, 1);
+      console.log(this.user.goods)
       axios.post("http://localhost:8000/?way=update", that.user);
     },
     unlogin: function () {
@@ -340,10 +359,8 @@ var app = new Vue({
 var wrap = document.querySelector(".wrap");
 var next = document.querySelector(".arrow_right");
 var prev = document.querySelector(".arrow_left");
-console.log("rnm", parseInt(wrap.style.left));
 function animation(wrap_direction) {
   var newLeft = parseInt(wrap.style.left);
-
   clearInterval(wrap.change);
   if (wrap_direction) {
     if (newLeft <= -4500) {
@@ -351,7 +368,6 @@ function animation(wrap_direction) {
     }
     wrap.style.left = newLeft + "px";
     var positionLeft = newLeft - 750;
-    console.log(newLeft);
     wrap.change = setInterval(function () {
       newLeft -= 10;
       wrap.style.left = newLeft + "px";
@@ -441,6 +457,26 @@ function autoPlay() {
     }, 1000);
     next_pic();
   }, 4000);
+  window.onfocus=function()
+  {console.log("onfocus")
+  clearInterval(timer)
+      timer = setInterval(function () {
+    clickflag = 0;
+    next.style.cursor = "wait";
+    prev.style.cursor = "wait";
+    setTimeout(function () {
+      clickflag = 1;
+      next.style.cursor = "pointer";
+    }, 1000);
+    next_pic();
+  }, 4000);
+  }
+  window.onblur=function()
+  {
+    console.log("onblur")
+    clearInterval(timer)
+  }
+
 }
 var container = document.querySelector(".container");
 container.onmouseenter = function () {
@@ -450,7 +486,7 @@ container.onmouseleave = function () {
   autoPlay();
 };
 var index = 0;
-var dots = document.getElementsByTagName("span");
+var dots = document.querySelectorAll(".buttons>span");
 function showCurrentDot() {
   for (var i = 0, len = dots.length; i < len; i++) {
     dots[i].className = "";

@@ -231,10 +231,11 @@
                 <div class="SCDT_class">价格</div>
                 <div class="SCDT_class">删除</div>
               </div>
-              <div class="shopcarcontent">
+              <div>
                 <div v-if="user.name">
-                  <div class="shopcontent" v-if="user.goods">
+                  <div v-if="user.goods.length!=0">
                     <div class="shoptittle">天猫超市</div>
+                    <div class="usercarcontent">
                     <div v-for="(item,index) in user.goods" class="usercar" :class="{'usercarbottom':index>0}">
                       <a href=""><img :src="item.img" alt=""></a>
                       <div class="itemnum">
@@ -244,6 +245,14 @@
                       </div>
                       <div class="totalprice">￥{{fixednum(item.price*item.num)}}</div>
                       <div @click="deleted(index)" class="deleted"></div>
+                    </div></div>
+                    <div class="usercartotal">
+                       <div class="usercartotalcontent">
+                         合计：
+                         <span class="usercarcount">¥{{fixednum(shopcar.price)}}</span>
+                         <span class="usercarcountadd">（含优惠）</span>
+                       </div>
+                       <button class="buyallcar" @click="buyall">去结算</button>
                     </div>
                   </div>
                   <div class="emptycar" v-else>当前购物车为空</div>
