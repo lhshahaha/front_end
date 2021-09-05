@@ -614,9 +614,9 @@
         <div class="courtyard">
           <div class="container">
             <div class="wrap" style="left: -750px">
-              <img :src="wrapimg[5]" />
-              <img v-for="item in wrapimg" :src="item"/>
-              <img :src="wrapimg[0]" />
+              <a href="" :title="wrapurl[5]"><img :src="wrapimg[5]" /></a>
+              <a href="" v-for="(item,index) in wrapurl" :title="item"><img :src="wrapimg[index]"/></a>
+              <a href="" :title="wrapurl[0]"><img :src="wrapimg[0]" /></a>
             </div>
             <div class="buttons">
               <span>1</span>

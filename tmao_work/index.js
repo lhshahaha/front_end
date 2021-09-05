@@ -30,6 +30,7 @@ var app = new Vue({
     searchbaractive: false,
     showsearch: false,
     seargoods: [],
+    wrapurl:[]
   },
 
   mounted() {
@@ -99,7 +100,10 @@ var app = new Vue({
     function getwrapimg() {
       return axios.get("http://localhost:8000/data/wrapimg.json");
     }
-    that = this;
+    function getwrapurl() {
+      return axios.get("http://localhost:8000/data/wrapurl.json");
+    }
+    var that = this;
     axios
       .all([
         getletters(),
@@ -112,6 +116,7 @@ var app = new Vue({
         getsidebar(),
         getwrapimg(),
         getfronttittle(),
+        getwrapurl()
       ])
       .then(
         axios.spread(function (
@@ -124,7 +129,8 @@ var app = new Vue({
           market,
           sidebar,
           wrapimg,
-          fronttittle
+          fronttittle,
+          wrapurl
         ) {
           that.letters = letters.data;
           that.courtyard_ad = ad.data;
@@ -135,6 +141,7 @@ var app = new Vue({
           that.market = market.data;
           that.sidebar = sidebar.data;
           that.wrapimg = wrapimg.data;
+          that.wrapurl = wrapurl.data;
           that.fronttittle = fronttittle.data;
         })
       );

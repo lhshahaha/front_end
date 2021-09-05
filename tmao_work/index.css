@@ -1427,7 +1427,7 @@ background-color: rgb(253,214,171);}
   height: 100%;
   border: none;
 }
-.courtyard a:hover img {
+.courtyard_ad a:hover img {
   position: relative;
   z-index: 11;
   transform: scale(1.12);
