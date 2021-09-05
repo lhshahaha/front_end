@@ -105,13 +105,7 @@
           </transition>
           <button @click="searchgoods" class="searchsubmit">搜索</button>
           <div class="searchrecommend" v-show="showsearch">
-            <div
-              class="recommenditem"
-              v-for="(item,index) in seargoods"
-              @click="clicksearchgood(item.name)"
-            >
-              {{item.name}}
-            </div>
+            <div class="recommenditem" v-for="(item,index) in seargoods" @click="clicksearchgood(item.name)" v-html="showsearchwords(item.name)"></div>
           </div>
         </div>
       </div>
@@ -204,6 +198,11 @@
           },
         },
         methods: {
+          showsearchwords: function (words) {
+      var repleacestring = "<span style='color: #999;'>" + this.searchgood+"</span>";
+
+      return words.replace(this.searchgood,repleacestring);
+    },
           focusbar: function () {
             if (this.searchgood) {
               this.showsearch = true;
