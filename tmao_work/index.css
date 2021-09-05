@@ -998,6 +998,7 @@ background-color: rgb(253,214,171);}
     color: #666;
     text-decoration: none;
     display: block;
+    cursor: pointer;
 }
 .service img
 {position: relative;
@@ -1329,7 +1330,7 @@ background-color: rgb(253,214,171);}
 }
 .wrap {
   position: absolute;
-  width: 5250px;
+  width: 6000px;
   height: 291px;
   z-index: 1;
   left: -1000px;

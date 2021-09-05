@@ -382,7 +382,6 @@ function animation(wrap_direction) {
     }
     wrap.style.left = newLeft + "px";
     var positionLeft = newLeft + 750;
-    console.log(newLeft);
     wrap.change = setInterval(function () {
       newLeft += 10;
       wrap.style.left = newLeft + "px";
@@ -398,24 +397,18 @@ next.onclick = function () {
   if (clickflag == 1) {
     next_pic();
     clickflag = 0;
-    next.style.cursor = "wait";
-    prev.style.cursor = "wait";
     setTimeout(function () {
       clickflag = 1;
-      next.style.cursor = "pointer";
-    }, 1000);
+    }, 600);
   }
 };
 prev.onclick = function () {
   if (clickflag == 1) {
     prev_pic();
     clickflag = 0;
-    next.style.cursor = "wait";
-    prev.style.cursor = "wait";
     setTimeout(function () {
       clickflag = 1;
-      next.style.cursor = "pointer";
-    }, 1000);
+    }, 600);
   }
 };
 function next_pic() {
@@ -447,14 +440,12 @@ function prev_pic() {
 }
 var timer = null;
 function autoPlay() {
+  clearInterval(timer)
   timer = setInterval(function () {
     clickflag = 0;
-    next.style.cursor = "wait";
-    prev.style.cursor = "wait";
     setTimeout(function () {
       clickflag = 1;
-      next.style.cursor = "pointer";
-    }, 1000);
+    }, 600);
     next_pic();
   }, 4000);
   window.onfocus=function()
@@ -462,12 +453,9 @@ function autoPlay() {
   clearInterval(timer)
       timer = setInterval(function () {
     clickflag = 0;
-    next.style.cursor = "wait";
-    prev.style.cursor = "wait";
     setTimeout(function () {
       clickflag = 1;
-      next.style.cursor = "pointer";
-    }, 1000);
+    }, 600);
     next_pic();
   }, 4000);
   }
@@ -496,9 +484,11 @@ function showCurrentDot() {
 for (var i = 0, len = dots.length; i < len; i++) {
   (function (i) {
     dots[i].onclick = function () {
+      clearInterval(timer);
       wrap.style.left = -750 - i * 750 + "px";
       index = i;
       showCurrentDot();
+      autoPlay();
     };
   })(i);
 }
