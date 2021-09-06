@@ -342,10 +342,6 @@ var app = new Vue({
       console.log(this.user.goods)
       axios.post("http://localhost:8000/?way=update", that.user);
     },
-    unlogin: function () {
-      localStorage.removeItem("csaaccount");
-      window.location.href = "http://localhost:8000/login.html";
-    },
     changeletter: function (x) {
       this.isletter = x;
     },
