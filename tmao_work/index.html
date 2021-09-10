@@ -631,15 +631,15 @@
           </div>
           <div class="courtyard_ad">
             <div class="row_1">
-              <a v-for="(item,index) in courtyard_ad" v-if="index<3" href=""><img  :src="item" alt="" /></a>
+              <a v-for="(item,index) in courtyard_ad" v-if="index<3" href="" :title="item.title"><img  :src="item.img" alt="" /></a>
             </div>
             <div class="row_2">
-              <a v-for="(item,index) in courtyard_ad" v-if="index>=3" href=""><img :src="item" alt="" /></a>
+              <a v-for="(item,index) in courtyard_ad" v-if="index>=3" href="" :title="item.title"><img :src="item.img" alt="" /></a>
             </div>
           </div>
         </div>
         <div class="sidebar">
-          <a  v-for="item in sidebar" href=""><img :src="item" alt="" /></a>
+          <a  v-for="item in sidebar" href="" :title="item.title"><img :src="item.img" alt="" /></a>
         </div>
       </div>
       <div class="goods">

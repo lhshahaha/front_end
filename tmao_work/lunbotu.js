@@ -11,13 +11,13 @@ function animation(wrap_direction) {
     wrap.style.left = newLeft + "px";
     var positionLeft = newLeft - 750;
     wrap.change = setInterval(function () {
-      newLeft -= 10;
+      newLeft -= 20;
       wrap.style.left = newLeft + "px";
       if (newLeft <= positionLeft) {
         wrap.style.left = positionLeft + "px";
         clearInterval(wrap.change);
       }
-    }, 5);
+    }, 1);
   } else {
     if (newLeft >= -750) {
       newLeft = -5250;
@@ -25,34 +25,17 @@ function animation(wrap_direction) {
     wrap.style.left = newLeft + "px";
     var positionLeft = newLeft + 750;
     wrap.change = setInterval(function () {
-      newLeft += 10;
+      newLeft += 20;
       wrap.style.left = newLeft + "px";
       if (newLeft >= positionLeft) {
         wrap.style.left = positionLeft + "px";
         clearInterval(wrap.change);
       }
-    }, 5);
+    }, 1);
   }
 }
 var clickflag = 1;
-next.onclick = function () {
-  if (clickflag == 1) {
-    next_pic();
-    clickflag = 0;
-    setTimeout(function () {
-      clickflag = 1;
-    }, 600);
-  }
-};
-prev.onclick = function () {
-  if (clickflag == 1) {
-    prev_pic();
-    clickflag = 0;
-    setTimeout(function () {
-      clickflag = 1;
-    }, 600);
-  }
-};
+
 function next_pic() {
   //var newLeft;
   if (wrap.style.left === "-4500px") {
@@ -82,32 +65,50 @@ function prev_pic() {
 }
 var timer = null;
 function autoPlay() {
-  clearInterval(timer)
+  clearInterval(timer);
   timer = setInterval(function () {
     clickflag = 0;
     setTimeout(function () {
       clickflag = 1;
-    }, 600);
+    }, 400);
     next_pic();
-  }, 4000);
-  window.onfocus=function()
-  {console.log("onfocus")
-  clearInterval(timer)
-      timer = setInterval(function () {
+  }, 3000);
+  window.onfocus = function () {
+    console.log("onfocus");
+    clearInterval(timer);
+    timer = setInterval(function () {
+      clickflag = 0;
+      setTimeout(function () {
+        clickflag = 1;
+      }, 100);
+      next_pic();
+    }, 4000);
+  };
+  window.onblur = function () {
+    console.log("onblur");
+    clearInterval(timer);
+  };
+}
+next.onclick = function () {
+  if (clickflag == 1) {
+    clearInterval(timer);
+    next_pic();
     clickflag = 0;
     setTimeout(function () {
       clickflag = 1;
-    }, 600);
-    next_pic();
-  }, 4000);
+    }, 400);
   }
-  window.onblur=function()
-  {
-    console.log("onblur")
-    clearInterval(timer)
+};
+prev.onclick = function () {
+  if (clickflag == 1) {
+    clearInterval(timer);
+    prev_pic();
+    clickflag = 0;
+    setTimeout(function () {
+      clickflag = 1;
+    }, 400);
   }
-
-}
+};
 var container = document.querySelector(".container");
 container.onmouseenter = function () {
   clearInterval(timer);
@@ -123,14 +124,50 @@ function showCurrentDot() {
   }
   dots[index].className = "on";
 }
+var hoverindex = -1;
+var jumppoint = null;
 for (var i = 0, len = dots.length; i < len; i++) {
   (function (i) {
-    dots[i].onclick = function () {
-      clearInterval(timer);
-      wrap.style.left = -750 - i * 750 + "px";
-      index = i;
-      showCurrentDot();
-      autoPlay();
+    dots[i].onmouseenter = function () {
+      hoverindex = i;
+      (function (i) {
+          clearTimeout(jumppoint);
+        jumppoint = setTimeout(() => {
+          if (i == hoverindex) {
+            clearInterval(timer);
+            var newLeft = parseInt(wrap.style.left);
+            var positionLeft = -750 - i * 750;
+            if (newLeft > positionLeft && clickflag) {
+              clickflag = 0;
+              console.log(clickflag);
+              dotsclick = setInterval(function () {
+                newLeft -= 20;
+                wrap.style.left = newLeft + "px";
+                if (newLeft <= positionLeft) {
+                  wrap.style.left = positionLeft + "px";
+                  clickflag = 1;
+                  clearInterval(dotsclick);
+                }
+              }, 1);
+            } else if (newLeft < positionLeft && clickflag) {
+              clickflag = 0;
+              console.log(clickflag);
+              dotsclick = setInterval(function () {
+                newLeft += 20;
+                wrap.style.left = newLeft + "px";
+                if (newLeft >= positionLeft) {
+                  wrap.style.left = positionLeft + "px";
+                  clickflag = 1;
+                  clearInterval(dotsclick);
+                }
+              }, 1);
+            }
+            index = i;
+            showCurrentDot();
+            autoPlay();
+          }
+        }, 1000);
+      })(i);
     };
   })(i);
 }

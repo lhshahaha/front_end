@@ -1,8 +1,8 @@
 [
-    "./img/row1.1.png",
-    "./img/87960166_p0_master1200.jpg",
-    "./img/row1.2.png",
-    "./img/87960166_p0_master1200.jpg",
-    "./img/row2.png",
-    "./img/87960166_p0_master1200.jpg"
-  ]
+  { "img": "./img/row1.1.png", "title": "原神1" },
+  { "img": "./img/87960166_p0_master1200.jpg", "title": "原神2" },
+  { "img": "./img/row1.2.png", "title": "原神3" },
+  { "img": "./img/87960166_p0_master1200.jpg", "title": "原神4" },
+  { "img": "./img/row2.png", "title": "原神6" },
+  { "img": "./img/87960166_p0_master1200.jpg", "title": "原神5" }
+]

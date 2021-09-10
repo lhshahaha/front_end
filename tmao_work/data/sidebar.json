@@ -1,4 +1,4 @@
 [
-    "./img/87459164_p0_master1200.jpg",
-    "./img/87265695_p0_master1200.jpg"
+   { "img":"./img/87459164_p0_master1200.jpg","title":"原神1"},
+   { "img":"./img/87265695_p0_master1200.jpg","title":"原神2"}
   ]
