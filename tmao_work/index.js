@@ -30,28 +30,28 @@ var app = new Vue({
     searchbaractive: false,
     showsearch: false,
     seargoods: [],
-    wrapurl:[]
+    wrapurl: [],
   },
 
   mounted() {
     var that = this;
-    console.log("123", localStorage.getItem("csaaccount"));
     if (localStorage.getItem("csaaccount")) {
       var that = this;
       var token = localStorage.getItem("csaaccount");
-      console.log("tocken", token);
       axios
         .get("http://localhost:8000/?way=autologin", {
           headers: { Authorization: "Bearer " + token },
         })
         .then(function (response) {
           console.log("userdata", response.data);
-          that.user = response.data;
-          for (item in that.user.goods) {
-            that.shopcar.price +=
-              that.user.goods[item].num * that.user.goods[item].price;
-            that.shopcar.weight +=
-              that.user.goods[item].num * that.user.goods[item].weight;
+          if (response.data) {
+            that.user = response.data;
+            for (item in that.user.goods) {
+              that.shopcar.price +=
+                that.user.goods[item].num * that.user.goods[item].price;
+              that.shopcar.weight +=
+                that.user.goods[item].num * that.user.goods[item].weight;
+            }
           }
         });
     }
@@ -116,7 +116,7 @@ var app = new Vue({
         getsidebar(),
         getwrapimg(),
         getfronttittle(),
-        getwrapurl()
+        getwrapurl(),
       ])
       .then(
         axios.spread(function (
@@ -143,8 +143,10 @@ var app = new Vue({
           that.wrapimg = wrapimg.data;
           that.wrapurl = wrapurl.data;
           that.fronttittle = fronttittle.data;
+          console.log(that.fronttittle);
         })
-      );
+      )
+      .catch((err) => console.log(err));
   },
   watch: {
     searchgood: function () {
@@ -172,9 +174,10 @@ var app = new Vue({
   },
   methods: {
     showsearchwords: function (words) {
-      var repleacestring = "<span style='color: #999;'>" + this.searchgood+"</span>";
+      var repleacestring =
+        "<span style='color: #999;'>" + this.searchgood + "</span>";
 
-      return words.replace(this.searchgood,repleacestring);
+      return words.replace(this.searchgood, repleacestring);
     },
     focusbar: function () {
       if (this.searchgood) {
@@ -232,9 +235,7 @@ var app = new Vue({
     showcategory: function () {
       if (window.pageYOffset >= 848.6) {
         this.goodclass = true;
-      }
-      else
-      {
+      } else {
         this.goodclass = false;
       }
     },
@@ -317,12 +318,11 @@ var app = new Vue({
         axios.post("http://localhost:8000/?way=update", that.user);
       }
     },
-    buyall:function()
-    {
+    buyall: function () {
       var that = this;
-      this.user.goods=[];
-      this.shopcar.price=0;
-      this.shopcar.weight=0;
+      this.user.goods = [];
+      this.shopcar.price = 0;
+      this.shopcar.weight = 0;
       axios.post("http://localhost:8000/?way=update", that.user);
     },
     plus: function (index) {
@@ -333,13 +333,13 @@ var app = new Vue({
       axios.post("http://localhost:8000/?way=update", that.user);
     },
     deleted: function (index) {
-      var that=this;
+      var that = this;
       this.shopcar.price -=
         this.user.goods[index].price * this.user.goods[index].num;
       this.shopcar.weight -=
         this.user.goods[index].weight * this.user.goods[index].num;
       this.user.goods.splice(index, 1);
-      console.log(this.user.goods)
+      console.log(this.user.goods);
       axios.post("http://localhost:8000/?way=update", that.user);
     },
     changeletter: function (x) {
@@ -359,141 +359,3 @@ var app = new Vue({
     },
   },
 });
-var wrap = document.querySelector(".wrap");
-var next = document.querySelector(".arrow_right");
-var prev = document.querySelector(".arrow_left");
-function animation(wrap_direction) {
-  var newLeft = parseInt(wrap.style.left);
-  clearInterval(wrap.change);
-  if (wrap_direction) {
-    if (newLeft <= -4500) {
-      newLeft = 0;
-    }
-    wrap.style.left = newLeft + "px";
-    var positionLeft = newLeft - 750;
-    wrap.change = setInterval(function () {
-      newLeft -= 10;
-      wrap.style.left = newLeft + "px";
-      if (newLeft <= positionLeft) {
-        wrap.style.left = positionLeft + "px";
-        clearInterval(wrap.change);
-      }
-    }, 5);
-  } else {
-    if (newLeft >= -750) {
-      newLeft = -5250;
-    }
-    wrap.style.left = newLeft + "px";
-    var positionLeft = newLeft + 750;
-    wrap.change = setInterval(function () {
-      newLeft += 10;
-      wrap.style.left = newLeft + "px";
-      if (newLeft >= positionLeft) {
-        wrap.style.left = positionLeft + "px";
-        clearInterval(wrap.change);
-      }
-    }, 5);
-  }
-}
-var clickflag = 1;
-next.onclick = function () {
-  if (clickflag == 1) {
-    next_pic();
-    clickflag = 0;
-    setTimeout(function () {
-      clickflag = 1;
-    }, 600);
-  }
-};
-prev.onclick = function () {
-  if (clickflag == 1) {
-    prev_pic();
-    clickflag = 0;
-    setTimeout(function () {
-      clickflag = 1;
-    }, 600);
-  }
-};
-function next_pic() {
-  //var newLeft;
-  if (wrap.style.left === "-4500px") {
-    animation(1);
-    index = 0;
-  } else {
-    animation(1);
-    // newLeft = parseInt(wrap.style.left)-1000;
-    index++;
-  }
-  showCurrentDot();
-  // wrap.style.left = newLeft + "px";
-}
-function prev_pic() {
-  //var newLeft;
-  if (wrap.style.left === "-750px") {
-    //newLeft = -4000;
-    animation(0);
-    index = 5;
-  } else {
-    //newLeft = parseInt(wrap.style.left) + 1000;
-    animation(0);
-    index--;
-  }
-  showCurrentDot();
-  //wrap.style.left = newLeft + "px";
-}
-var timer = null;
-function autoPlay() {
-  clearInterval(timer)
-  timer = setInterval(function () {
-    clickflag = 0;
-    setTimeout(function () {
-      clickflag = 1;
-    }, 600);
-    next_pic();
-  }, 4000);
-  window.onfocus=function()
-  {console.log("onfocus")
-  clearInterval(timer)
-      timer = setInterval(function () {
-    clickflag = 0;
-    setTimeout(function () {
-      clickflag = 1;
-    }, 600);
-    next_pic();
-  }, 4000);
-  }
-  window.onblur=function()
-  {
-    console.log("onblur")
-    clearInterval(timer)
-  }
-
-}
-var container = document.querySelector(".container");
-container.onmouseenter = function () {
-  clearInterval(timer);
-};
-container.onmouseleave = function () {
-  autoPlay();
-};
-var index = 0;
-var dots = document.querySelectorAll(".buttons>span");
-function showCurrentDot() {
-  for (var i = 0, len = dots.length; i < len; i++) {
-    dots[i].className = "";
-  }
-  dots[index].className = "on";
-}
-for (var i = 0, len = dots.length; i < len; i++) {
-  (function (i) {
-    dots[i].onclick = function () {
-      clearInterval(timer);
-      wrap.style.left = -750 - i * 750 + "px";
-      index = i;
-      showCurrentDot();
-      autoPlay();
-    };
-  })(i);
-}
-autoPlay();
-showCurrentDot();
