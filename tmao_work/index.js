@@ -43,7 +43,6 @@ var app = new Vue({
           headers: { Authorization: "Bearer " + token },
         })
         .then(function (response) {
-          console.log("userdata", response.data);
           if (response.data) {
             that.user = response.data;
             for (item in that.user.goods) {
@@ -55,7 +54,6 @@ var app = new Vue({
           }
         });
     }
-    console.log(this.user);
     if (window.pageYOffset >= 225.6) {
       this.tittle = true;
     }
@@ -143,7 +141,6 @@ var app = new Vue({
           that.wrapimg = wrapimg.data;
           that.wrapurl = wrapurl.data;
           that.fronttittle = fronttittle.data;
-          console.log(that.fronttittle);
         })
       )
       .catch((err) => console.log(err));
@@ -151,7 +148,6 @@ var app = new Vue({
   watch: {
     searchgood: function () {
       var that = this;
-      console.log(this.showsearch);
       if (this.searchgood) {
         this.showsearch = true;
       } else {
@@ -159,7 +155,7 @@ var app = new Vue({
       }
 
       axios
-        .get(
+        .put(
           "http://localhost:8000/search.html?city=" +
             that.selectedcity +
             "&goodname=" +
@@ -168,7 +164,6 @@ var app = new Vue({
         )
         .then((response) => {
           that.seargoods = response.data;
-          console.log("goods", that.seargoods);
         });
     },
   },
@@ -182,12 +177,6 @@ var app = new Vue({
     focusbar: function () {
       if (this.searchgood) {
         this.showsearch = true;
-        console.log(
-          this.showsearch,
-          this.seargoods,
-          this.searchgood,
-          this.selectcity
-        );
       }
     },
     clicksearchgood: function (name) {
@@ -251,16 +240,41 @@ var app = new Vue({
         return (0).toFixed(2);
       }
     },
+
+    minus: function (index) {
+      var that = this;
+      if (this.user.goods[index].num > 1) {
+        this.user.goods[index].num--;
+        this.shopcar.price -= this.user.goods[index].price;
+        this.shopcar.weight -= this.user.goods[index].weight;
+        axios.put("http://localhost:8000/?way=update", that.user);
+      }
+    },
+    buyall: function () {
+      var that = this;
+      this.user.goods = [];
+      this.shopcar.price = 0;
+      this.shopcar.weight = 0;
+      axios.put("http://localhost:8000/?way=update", that.user);
+    },
+    plus: function (index) {
+      var that = this;
+      this.user.goods[index].num++;
+      this.shopcar.price += this.user.goods[index].price;
+      this.shopcar.weight += this.user.goods[index].weight;
+      axios.put("http://localhost:8000/?way=update", that.user);
+    },
     putincar: function (itemgood) {
-      if (this.user) {
+      if (this.user.name) {
         if (itemgood.issold) {
           alert("卖完了");
         } else {
           var isincar = true;
           for (item in this.user.goods) {
-            if (this.user.goods[item] == itemgood.id) {
-              this.user.goods[item].num++;
+            if (this.user.goods[item].id == itemgood.id) {
+              this.plus(item);
               isincar = false;
+              break;
             }
           }
           if (isincar) {
@@ -281,7 +295,7 @@ var app = new Vue({
                       that.user.goods.push(temp);
                       that.shopcar.price += itemgood.price;
                       that.shopcar.weight += that.goods[item].weight;
-                      axios.post(
+                      axios.put(
                         "http://localhost:8000/?way=update",
                         that.user
                       );
@@ -300,37 +314,17 @@ var app = new Vue({
                   this.user.goods.push(temp);
                   that.shopcar.price += itemgood.price;
                   that.shopcar.weight += that.goods[item].weight;
-                  axios.post("http://localhost:8000/?way=update", that.user);
+                  axios.put("http://localhost:8000/?way=update", that.user);
                   break;
                 }
               }
             }
           }
         }
+      }else
+      {
+        alert("请登录")
       }
-    },
-    minus: function (index) {
-      var that = this;
-      if (this.user.goods[index].num > 1) {
-        this.user.goods[index].num--;
-        this.shopcar.price -= this.user.goods[index].price;
-        this.shopcar.weight -= this.user.goods[index].weight;
-        axios.post("http://localhost:8000/?way=update", that.user);
-      }
-    },
-    buyall: function () {
-      var that = this;
-      this.user.goods = [];
-      this.shopcar.price = 0;
-      this.shopcar.weight = 0;
-      axios.post("http://localhost:8000/?way=update", that.user);
-    },
-    plus: function (index) {
-      var that = this;
-      this.user.goods[index].num++;
-      this.shopcar.price += this.user.goods[index].price;
-      this.shopcar.weight += this.user.goods[index].weight;
-      axios.post("http://localhost:8000/?way=update", that.user);
     },
     deleted: function (index) {
       var that = this;
@@ -339,15 +333,14 @@ var app = new Vue({
       this.shopcar.weight -=
         this.user.goods[index].weight * this.user.goods[index].num;
       this.user.goods.splice(index, 1);
-      console.log(this.user.goods);
-      axios.post("http://localhost:8000/?way=update", that.user);
+      axios.put("http://localhost:8000/?way=update", that.user);
     },
     changeletter: function (x) {
       this.isletter = x;
     },
     selectcity: function (cityname) {
       this.selectedcity = cityname;
-      console.log(this.selectedcity);
+
     },
     mouseover: function (index, color) {
       this.actindex = index;

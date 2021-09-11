@@ -38,25 +38,6 @@ const server = http.createServer((req, res) => {
         if (err) {
           res.writeHead(404, { "Content-Type": 'text/html;charset="utf-8"' });
           res.end("404这个页面不存在");
-        } else if (query.way == "getsearch") {
-          fs.readFile("./data/goods.json", (error, data) => {
-            if (error) {
-              console.log(error);
-            } else {
-              gooddata = JSON.parse(data.toString());
-              var senddata = [];
-
-              for (item in gooddata) {
-                if (
-                  gooddata[item].city == query.city &&
-                  gooddata[item].name.search(query.goodname) >= 0
-                ) {
-                  senddata.push(gooddata[item]);
-                }
-              }
-              res.end(JSON.stringify(senddata));
-            }
-          });
         } else if (query.way == "autologin") {
           const raw = String(req.headers.authorization).split(" ").pop();
           const { token } = jwt.verify(raw, tokenkey);
@@ -91,6 +72,52 @@ const server = http.createServer((req, res) => {
         }
       });
     }
+    if (method === "PUT") {
+      if (query.way == "update") {
+        let putData = "";
+        req.on("data", (chunk) => {
+          putData += chunk;
+        });
+        req.on("end", () => {
+          putData = JSON.parse(putData);
+
+          fs.readFile("./user/" + putData.name + ".json", (err, data) => {
+            if (!err) {
+              var Data = JSON.parse(data.toString());
+              putData.password = Data.password;
+              putData.ip = Data.ip;
+              fs.writeFile(
+                "./user/" + putData.name + ".json",
+                JSON.stringify(putData),
+                (error) => {
+                  if (error) console.log(error);
+                }
+              );
+              res.end(0);
+            }
+          });
+        });
+      } else if (query.way == "getsearch") {
+        fs.readFile("./data/goods.json", (error, data) => {
+          if (error) {
+            console.log(error);
+          } else {
+            gooddata = JSON.parse(data.toString());
+            var senddata = [];
+
+            for (item in gooddata) {
+              if (
+                gooddata[item].city == query.city &&
+                gooddata[item].name.search(query.goodname) >= 0
+              ) {
+                senddata.push(gooddata[item]);
+              }
+            }
+            res.end(JSON.stringify(senddata));
+          }
+        });
+      }
+    }
     if (method === "POST") {
       let postData = "";
       req.on("data", (chunk) => {
@@ -105,7 +132,7 @@ const server = http.createServer((req, res) => {
             var wheexit = true;
             for (item in files) {
               if (files[item] == postData.name + ".json") {
-                res.end("0");
+                res.end(0);
                 var wheexit = false;
               }
             }
@@ -149,7 +176,7 @@ const server = http.createServer((req, res) => {
                         );
                         res.end(sendtoken);
                       } else {
-                        res.end("0");
+                        res.end(0);
                       }
                     }
                   }
@@ -157,23 +184,8 @@ const server = http.createServer((req, res) => {
               }
             }
             if (wheexit) {
-              res.end("0");
+              res.end(0);
             }
-          }
-          if (query.way == "update") {
-            fs.readFile("./user/" + postData.name + ".json", (err, data) => {
-              if (!err) {
-                var Data = JSON.parse(data.toString());
-                postData.password = Data.password;
-                fs.writeFile(
-                  "./user/" + postData.name + ".json",
-                  JSON.stringify(postData),
-                  (error) => {
-                    if (error) console.log(error);
-                  }
-                );
-              }
-            });
           }
         }
       });
