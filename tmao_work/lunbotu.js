@@ -68,16 +68,18 @@ function prev_pic() {
 }
 var timer = null;
 function autoPlay() {
+  if(!document.hidden){
+    console.log("hidden")
   clearInterval(timer);
   timer = setInterval(function () {
     next_pic();
-  }, 3000);
+  }, 3000);}
   window.onfocus = function () {
     console.log("onfocus");
     clearInterval(timer);
     timer = setInterval(function () {
       next_pic();
-    }, 4000);
+    }, 3000);
   };
   window.onblur = function () {
     console.log("onblur");
