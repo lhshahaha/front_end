@@ -164,7 +164,7 @@
             return axios.get("http://localhost:8000/data/hotcity.json");
           }
           function getgoods() {
-            return axios.get(
+            return axios.put(
               decodeURI(window.location.href) + "&way=getsearch"
             );
           }
@@ -184,7 +184,7 @@
             console.log(this.showsearch)
             this.showsearch=true
             axios
-              .get(
+              .put(
                 "http://localhost:8000/search.html?city=" +
                   that.selectedcity +
                   "&goodname=" +
@@ -224,7 +224,7 @@
           searchgoods: function () {
             if (this.searchgood) {
               axios
-                .get(
+                .put(
                   "http://localhost:8000/search.html?city=" +
                     this.selectedcity +
                     "&goodname=" +
