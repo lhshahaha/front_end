@@ -68,12 +68,12 @@ function prev_pic() {
 }
 var timer = null;
 function autoPlay() {
-  if(!document.hidden){
-    console.log("hidden")
-  clearInterval(timer);
-  timer = setInterval(function () {
-    next_pic();
-  }, 3000);}
+  if (!document.hidden) {
+    clearInterval(timer);
+    timer = setInterval(function () {
+      next_pic();
+    }, 3000);
+  }
   window.onfocus = function () {
     console.log("onfocus");
     clearInterval(timer);
@@ -129,14 +129,12 @@ for (var i = 0, len = dots.length; i < len; i++) {
       (function (i) {
         clearTimeout(jumppoint);
         jumppoint = setTimeout(() => {
-          console.log(123,i,hoverindex)
-          if (i == hoverindex&&clickflag) {
+          if (i == hoverindex && clickflag) {
             clearInterval(timer);
-            clickflag=0;
+            clickflag = 0;
             var newLeft = parseInt(wrap.style.left);
             var positionLeft = -750 - i * 750;
             if (newLeft > positionLeft) {
-              console.log(clickflag);
               dotsclick = setInterval(function () {
                 newLeft -= 20;
                 wrap.style.left = newLeft + "px";
@@ -148,7 +146,6 @@ for (var i = 0, len = dots.length; i < len; i++) {
                 }
               }, 1);
             } else if (newLeft < positionLeft) {
-              console.log(clickflag);
               dotsclick = setInterval(function () {
                 newLeft += 20;
                 wrap.style.left = newLeft + "px";
@@ -159,9 +156,8 @@ for (var i = 0, len = dots.length; i < len; i++) {
                   hoverindex = -1;
                 }
               }, 1);
-            }else
-            {
-              clickflag=1;
+            } else {
+              clickflag = 1;
             }
             index = i;
             showCurrentDot();

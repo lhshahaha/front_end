@@ -20,6 +20,8 @@ var getmime = function (extname) {
       return "image/png";
     case ".json":
       return "application/json";
+      case ".ico":
+        return "image/png";
   }
 };
 const server = http.createServer((req, res) => {
@@ -32,7 +34,6 @@ const server = http.createServer((req, res) => {
   );
   url = url.split("?")[0];
   url = url == "/" ? "/index.html" : url;
-  if (url != "/favicon.ico") {
     if (method === "GET") {
       fs.readFile("." + url, (err) => {
         if (err) {
@@ -190,7 +191,7 @@ const server = http.createServer((req, res) => {
         }
       });
     }
-  }
+  
 });
 
 //监听8000端口,等待连接
