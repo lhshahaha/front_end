@@ -3,6 +3,10 @@
   font-size: 12px;
   font-family: tahoma, arial, "\5FAE\8F6F\96C5\9ED1", sans-serif;
 }
+.background
+{
+  background: url(./png/loading.gif) 50% 50% no-repeat;
+}
 .front_tittle {
   height: 100px;
 }

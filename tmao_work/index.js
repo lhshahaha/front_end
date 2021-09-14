@@ -31,8 +31,8 @@ var app = new Vue({
     showsearch: false,
     seargoods: [],
     wrapurl: [],
+    loading:true
   },
-
   mounted() {
     var that = this;
     if (localStorage.getItem("csaaccount")) {
@@ -166,6 +166,22 @@ var app = new Vue({
           that.seargoods = response.data;
         });
     },
+  },
+  updated() {
+    let imgList = document.getElementsByTagName('img');
+    let imgCount = imgList.length;
+    let imgLoad = 0;
+
+    for (let i = 0; i < imgCount; i++) {
+      imgList[i].onload = () => {
+        imgLoad++;
+        console.log(imgLoad);
+        if (imgLoad === imgCount) {
+          this.loading =false;
+          console.log("图片加载完成 展示组件");
+        }
+      }
+    }
   },
   methods: {
     showsearchwords: function (words) {

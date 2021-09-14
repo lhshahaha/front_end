@@ -22,6 +22,8 @@ var getmime = function (extname) {
       return "application/json";
       case ".ico":
         return "image/png";
+      case ".gif":
+        return "image/gif";
   }
 };
 const server = http.createServer((req, res) => {
